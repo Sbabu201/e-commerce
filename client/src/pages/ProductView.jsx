@@ -17,7 +17,7 @@ const ProductView = () => {
                 <div className='w-full h-1/2 flex flex-col justify-evenly'>
                     <p className='font-bold text-3xl'>Brand</p>
                     <p className='text-green-500 text-lg'>title</p>
-                    <p>rating</p>
+                    <p>Rating</p>
                     <p>MRP</p>
                     <p>colours</p>
                     <p>Size</p>
