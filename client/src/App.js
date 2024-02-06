@@ -10,6 +10,8 @@ import Address from './pages/Address';
 import Payment from './pages/Payment';
 import Wishlist from './pages/Wishlist';
 import ProductView from './pages/ProductView';
+import Footer from './components/Footer';
+import AllProduct from './pages/AllProduct';
 function App() {
   return (
     <>
@@ -26,8 +28,12 @@ function App() {
         <Route exact path="/payment" element={<Payment />} />
         <Route exact path="/wishlist" element={<Wishlist />} />
         <Route exact path="/product" element={<ProductView />} />
+        <Route exact path="/allproduct" element={<AllProduct />} />
 
       </Routes>
+      <TogleNavbar>
+        <Footer />
+      </TogleNavbar>
     </>
   );
 }

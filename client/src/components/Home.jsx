@@ -1,10 +1,32 @@
 import React from 'react'
+import HomeImageSlides from '../pages/cards/HomeImageSlides'
+import BrandList from '../pages/BrandList'
+import ItemList from '../pages/cards/ItemList'
 
 const Home = () => {
+    const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 6, 7]
     return (
-        <div className='pt-20'>
-            <h1>helllo</h1>  hello from home
-            <h1>helllo</h1>  hello from home
+        <div className='bg-gray-300'>
+            <div className='pt-20 flex flex-col justify-center items-center h-screen  '>
+                <HomeImageSlides />
+            </div>
+            <div className='relative min-w-full  overflow-hidden scrollbar-hide   p-10  '>
+
+                <div className='py-10 flex overflow-x-auto scrollbar-hide  scroll-smooth' >
+                    {arr.map((item) => {
+                        return (
+                            <BrandList />
+                        )
+                    })}
+                </div>
+                <div className='py-10 flex overflow-x-auto scrollbar-hide  scroll-smooth' >
+                    {arr.map((item) => {
+                        return (
+                            <ItemList />
+                        )
+                    })}
+                </div>
+            </div>
 
         </div>
     )
