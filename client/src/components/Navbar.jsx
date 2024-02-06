@@ -12,11 +12,9 @@ const Navbar = () => {
             <img className='w-1/12  h-20 object-cover' src={logo} alt="" />
             <div className='w-5/12 font-bold flex justify-evenly items-center  h-20'>
 
-                <NavLink to="/" className="hover:text-sky-400">Men</NavLink>
-                <NavLink to="/" className="hover:text-sky-400">Women</NavLink>
-                <NavLink to="/" className="hover:text-sky-400">Kids</NavLink>
-                <NavLink to="/" className="hover:text-sky-400">Home & Living</NavLink>
-                <NavLink to="/" className="hover:text-sky-400">Beauty</NavLink>
+                <NavLink to="/men" className="hover:text-sky-400">Men</NavLink>
+                <NavLink to="/women" className="hover:text-sky-400">Women</NavLink>
+                <NavLink to="/kid" className="hover:text-sky-400">Kids</NavLink>
 
             </div>
             <div className=' flex items-center w-4/12  h-20'>

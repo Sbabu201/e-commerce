@@ -11,7 +11,7 @@ const Bag = () => {
     return (
         <>
 
-            <div className='pt-20 flex flex-col md:flex-row m-20 items-start gap-5 h-screen'>
+            <div className='pt-20 flex flex-col md:flex-row m-20 items-start gap-5 h-fit'>
 
                 <div className='bg-transparent shadow-lg gap-4 w-full flex-col flex justify-between  md:w-2/3 h-max '>
                     {

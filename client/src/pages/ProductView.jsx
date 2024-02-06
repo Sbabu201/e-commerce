@@ -4,8 +4,8 @@ import { Navigate, useNavigate } from 'react-router-dom'
 const ProductView = () => {
     const navigate = useNavigate();
     return (
-        <div className=' mt-20 w-full  h-screen justify-center items-center flex-col md:justify-between md:flex-row flex '>
-            <div className='w-3/5 h-screen flex  flex-wrap mt-10 '>
+        <div className=' mt-20 mb-4 md:mb-20 w-full  h-fit justify-center items-center flex-col  md:justify-between md:flex-row flex '>
+            <div className='w-3/5 h-fit flex  flex-wrap mt-10 '>
                 <img className='md:w-1/2 w-full h-1/12 md:h-2/3 object-cover p-4   ' src={image} alt="" />
                 <img className='md:w-1/2 w-full h-1/12 md:h-2/3 object-cover p-4  ' src={image} alt="" />
                 <img className='md:w-1/2 w-full h-1/12 md:h-2/3 object-cover p-4  ' src={image} alt="" />

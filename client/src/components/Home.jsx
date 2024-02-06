@@ -15,7 +15,7 @@ const Home = () => {
                 <div className='py-10 flex overflow-x-auto scrollbar-hide  scroll-smooth' >
                     {arr.map((item) => {
                         return (
-                            <BrandList />
+                            <ItemList />
                         )
                     })}
                 </div>

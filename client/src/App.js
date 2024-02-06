@@ -12,6 +12,9 @@ import Wishlist from './pages/Wishlist';
 import ProductView from './pages/ProductView';
 import Footer from './components/Footer';
 import AllProduct from './pages/AllProduct';
+import Men from './pages/sections/Men';
+import Women from './pages/sections/Women';
+import Kid from './pages/sections/Kid';
 function App() {
   return (
     <>
@@ -29,6 +32,10 @@ function App() {
         <Route exact path="/wishlist" element={<Wishlist />} />
         <Route exact path="/product" element={<ProductView />} />
         <Route exact path="/allproduct" element={<AllProduct />} />
+        <Route exact path="/men" element={<Men />} />
+        <Route exact path="/women" element={<Women />} />
+        <Route exact path="/kid" element={<Kid />} />
+
 
       </Routes>
       <TogleNavbar>
