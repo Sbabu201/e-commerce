@@ -1,114 +1,157 @@
-import React from 'react'
-import AllItem from './cards/AllItem'
 
+import React, { useState } from 'react';
+import AllItem from './cards/AllItem';
+import { useSelector } from 'react-redux';
 
 const AllProduct = () => {
-    const arr = [1, 2, 3, 4, 5, 3, 4, 5, 4, 3, 4, 5, 6, 5, 4, 3, 4, 5, 4, 3, , 2, 2, 2, 3, 4, 5, 6, 3, 3, 3]
+    const products = useSelector(state => state.productReducer.productItems);
+    const query = JSON.parse(localStorage.getItem("query"));
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [filters, setFilters] = useState({
+        category: query?.category || '',
+        brand: query?.brand || '',
+        type: query?.type || '',
+    });
+    const itemsPerPage = 15;
+
+    // Apply filters to products
+    const filteredProducts = products.filter(product => {
+        return (
+            (!filters.category || product.category === filters.category) &&
+            (!filters.brand || product.brand === filters.brand) &&
+            (!filters.type || product.type === filters.type)
+        );
+    });
+
+    // Calculate the total number of pages
+    const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+
+    // Calculate the index range of items to display based on the current page
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = currentPage * itemsPerPage;
+
+    // Get the list items for the current page
+    const currentItems = filteredProducts.slice(startIndex, endIndex);
+
+    // Function to handle page change
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
+
+    // Function to handle filter change
+    const handleFilterChange = (filterName, value) => {
+        setFilters({
+            ...filters,
+            [filterName]: value,
+        });
+        setCurrentPage(1); // Reset to the first page when filter changes
+    };
+
     return (
-        <div className='mt-20'>
-
-            <div className='flex w-full  h-full justify-between  '>
-                <div className='h-fit w-1/5 flex flex-col  border border-gray-200  '>
-                    <div className='p-10 flex flex-col gap-4 my-4  '>
-                        <p>FILTER</p>
-                        <form className='flex gap-4 flex-col'>
-                            <div className="radio">
-                                <label>
-                                    <input type="radio" value="male" checked={true} />
-                                    Option 1
-                                </label>
-                            </div>
-                            <div className="radio">
-                                <label>
-                                    <input type="radio" value="female" />
-                                    Option 2
-                                </label>
-                            </div>
-                        </form>
-                    </div>
-
-                    <div className='p-10 flex flex-col gap-4 my-4 border border-gray-200 '>
-                        <p>BRAND</p>
-                        <div className='flex gap-4'>
-                            <input type="checkbox" name="brand1" id="" />
-                            brand-1
-                        </div>
-                        <div className='flex gap-4'>
-                            <input type="checkbox" name="brand2" id="" />
-                            brand-2
-                        </div>
-                        <div className='flex gap-4'>
-                            <input type="checkbox" name="brand3" id="" />
-                            brand-3
-                        </div>
-                        <div className='flex gap-4'>
-                            <input type="checkbox" name="brand4" id="" />
-                            brand-4
-                        </div>
-                    </div>
-                    <div className='p-10 flex flex-col gap-4 my-4  '>
-                        <p>PRICE</p>
-                        <div className='flex gap-4'>
-                            <input type="checkbox" name="brand1" id="" />
-                            brand-1
-                        </div>
-                        <div className='flex gap-4'>
-                            <input type="checkbox" name="brand2" id="" />
-                            brand-2
-                        </div>
-                        <div className='flex gap-4'>
-                            <input type="checkbox" name="brand3" id="" />
-                            brand-3
-                        </div>
-                        <div className='flex gap-4'>
-                            <input type="checkbox" name="brand4" id="" />
-                            brand-4
-                        </div>
-                    </div>
-                    <div className='p-10 flex flex-col gap-4 my-4 border border-t-gray-200 '>
-                        <p>COLOUR</p>
-                        <div className='flex gap-4'>
-                            <input type="checkbox" name="brand1" id="" />
-                            brand-1
-                        </div>
-                        <div className='flex gap-4'>
-                            <input type="checkbox" name="brand2" id="" />
-                            brand-2
-                        </div>
-                        <div className='flex gap-4'>
-                            <input type="checkbox" name="brand3" id="" />
-                            brand-3
-                        </div>
-                        <div className='flex gap-4'>
-                            <input type="checkbox" name="brand4" id="" />
-                            brand-4
-                        </div>
-                        <div className='flex gap-4'>
-                            <input type="checkbox" name="brand4" id="" />
-                            brand-4
-                        </div>
-                        <div className='flex gap-4'>
-                            <input type="checkbox" name="brand4" id="" />
-                            brand-4
-                        </div>
-                        <div className='flex gap-4'>
-                            <input type="checkbox" name="brand4" id="" />
-                            brand-4
-                        </div>
-                        <div className='flex gap-4'>
-                            <input type="checkbox" name="brand4" id="" />
-                            brand-4
-                        </div>
+        <div className='mt-20 bg-gray-300 flex  '>
+            <div className='md:min-h-screen  h-fit w-1/5 flex flex-col border  border-gray-200'>
+                <div className='p-4'>
+                    <h2 className='font-semibold'>Category</h2>
+                    <div className='mt-2'>
+                        <label className='inline-flex items-center'>
+                            <input type='checkbox' className='form-checkbox' />
+                            <span className='ml-2'>Category 1</span>
+                        </label>
+                        <label className='inline-flex items-center'>
+                            <input type='checkbox' className='form-checkbox' />
+                            <span className='ml-2'>Category 2</span>
+                        </label>
+                        <label className='inline-flex items-center'>
+                            <input type='checkbox' className='form-checkbox' />
+                            <span className='ml-2'>Category 3</span>
+                        </label>
+                        <label className='inline-flex items-center'>
+                            <input type='checkbox' className='form-checkbox' />
+                            <span className='ml-2'>Category 4</span>
+                        </label>
                     </div>
                 </div>
-                <div className=' w-4/5 h-full flex justify-center  gap-2 md:gap-4 md:justify-evenly md:w-full   md:p-12  flex-wrap'>
 
-                    {arr.map((item) => (<AllItem />))}
+                <div className='p-4 border-t border-gray-200'>
+                    <h2 className='font-semibold'>Price Range</h2>
+                    <div className='mt-2 flex flex-col'>
+                        <input type='range' className='form-range' />
+                        {/* You can add more options like sliders or input fields for price range */}
+                    </div>
                 </div>
+
+                <div className='p-4 border-t border-gray-200'>
+                    <h2 className='font-semibold'>Brand</h2>
+                    <div className='mt-2'>
+                        <label className='inline-flex items-center'>
+                            <input type='checkbox' className='form-checkbox' />
+                            <span className='ml-2'>Brand 1</span>
+                        </label>
+                        <label className='inline-flex items-center'>
+                            <input type='checkbox' className='form-checkbox' />
+                            <span className='ml-2'>Brand 2</span>
+                        </label>
+                        <label className='inline-flex items-center'>
+                            <input type='checkbox' className='form-checkbox' />
+                            <span className='ml-2'>Brand 3</span>
+                        </label>
+                        <label className='inline-flex items-center'>
+                            <input type='checkbox' className='form-checkbox' />
+                            <span className='ml-2'>Brand 4</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div className='p-4 border-t border-gray-200'>
+                    <h2 className='font-semibold'>Color</h2>
+                    <div className='mt-2'>
+                        <label className='inline-flex items-center'>
+                            <input type='checkbox' className='form-checkbox' />
+                            <span className='ml-2'>Color 1</span>
+                        </label>
+                        <label className='inline-flex items-center'>
+                            <input type='checkbox' className='form-checkbox' />
+                            <span className='ml-2'>Color 2</span>
+                        </label>
+                        <label className='inline-flex items-center'>
+                            <input type='checkbox' className='form-checkbox' />
+                            <span className='ml-2'>Color 3</span>
+                        </label>
+                        <label className='inline-flex items-center'>
+                            <input type='checkbox' className='form-checkbox' />
+                            <span className='ml-2'>Color 4</span>
+                        </label>
+                    </div>
+                </div>
+
             </div>
 
-        </div>
-    )
-}
+            <div className='h-full w-full'>
+                {/* Right panel for product items */}
+                <div className='w-4/5 h-full flex justify-center gap-2  md:gap-4 md:justify-evenly md:w-full md:p-12 flex-wrap'>
+                    {/* Render list items for the current page */}
+                    {currentItems.map((item) => (
+                        <AllItem key={item._id} item={item} />
+                    ))}
+                </div>
 
-export default AllProduct
+                {/* Pagination controls */}
+                <div className='flex justify-center mt-4'>
+                    {/* Render page numbers */}
+                    {Array.from({ length: totalPages }, (_, index) => (
+                        <button
+                            key={index}
+                            onClick={() => handlePageChange(index + 1)}
+                            className={`mx-1 px-4 py-2 border border-gray-400 rounded-md ${currentPage === index + 1 ? 'bg-gray-200' : ''}`}
+                        >
+                            {index + 1}
+                        </button>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default AllProduct;

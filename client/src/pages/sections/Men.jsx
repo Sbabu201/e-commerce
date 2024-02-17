@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ItemList from '../cards/ItemList'
 import HomeImageSlides from '../cards/HomeImageSlides'
+import { menBrand, mencatagory } from './Items'
+
 
 const Men = () => {
-    const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 6, 7]
+    const [menItem, setMenItem] = useState({});
+
+    const arr1 = menBrand();
+    const arr2 = mencatagory();
 
     return (
         <div className='bg-gray-300'>
@@ -11,22 +16,27 @@ const Men = () => {
                 <HomeImageSlides />
             </div>
             <div className='relative min-w-full  overflow-hidden scrollbar-hide   p-10  '>
+                <h1 className='font-bold text-4xl p-10'>Top Brands...</h1>
+                <div className='py-10 flex overflow-x-auto scrollbar-hide  scroll-smooth' >
 
-                <div className='py-10 flex overflow-x-auto scrollbar-hide  scroll-smooth' >
-                    {arr.map((item) => {
+                    {arr1.map((item, i) => {
                         return (
-                            <ItemList />
-                        )
-                    })}
-                </div>
-                <div className='py-10 flex overflow-x-auto scrollbar-hide  scroll-smooth' >
-                    {arr.map((item) => {
-                        return (
-                            <ItemList />
+                            <ItemList item={item} />
                         )
                     })}
                 </div>
             </div>
+            <div className='relative min-w-full  overflow-hidden scrollbar-hide   p-10  '>
+                <h1 className='font-bold text-4xl p-10'>Catagories to watch....</h1>
+                <div className='py-10 flex overflow-x-auto scrollbar-hide  scroll-smooth' >
+                    {arr2.map((item, i) => {
+                        return (
+                            <ItemList item={item} />
+                        )
+                    })}
+                </div>
+            </div>
+
 
         </div>
     )

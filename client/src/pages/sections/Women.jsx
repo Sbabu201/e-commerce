@@ -1,9 +1,10 @@
 import React from 'react'
 import ItemList from '../cards/ItemList'
 import HomeImageSlides from '../cards/HomeImageSlides'
-
+import { womenBrand, womenCatagory } from './Items';
 const Women = () => {
-    const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 6, 7]
+    const arr1 = womenBrand();
+    const arr2 = womenCatagory();
 
     return (
         <div className='bg-gray-300'>
@@ -13,16 +14,16 @@ const Women = () => {
             <div className='relative min-w-full  overflow-hidden scrollbar-hide   p-10  '>
 
                 <div className='py-10 flex overflow-x-auto scrollbar-hide  scroll-smooth' >
-                    {arr.map((item) => {
+                    {arr1.map((item) => {
                         return (
-                            <ItemList />
+                            <ItemList item={item} />
                         )
                     })}
-                </div>
+                </div>  
                 <div className='py-10 flex overflow-x-auto scrollbar-hide  scroll-smooth' >
-                    {arr.map((item) => {
+                    {arr2.map((item) => {
                         return (
-                            <ItemList />
+                            <ItemList item={item} />
                         )
                     })}
                 </div>

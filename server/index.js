@@ -3,20 +3,33 @@ const cors = require("cors")
 const dotenv = require("dotenv");
 const MongoDb = require("./Database/MongoDb")
 
-// connect to the data base 
-
-MongoDb();
-
-//listening to the port 
-
 //defining application 
-
 const app = express();
 
-// middlewares 
 
+// connect to the data base 
+MongoDb();
+
+//importing routes 
+const userRoutes = require("./routes/UserRoutes")
+const productRoutes = require("./routes/ProductRoute")
+const WishListRoutes = require("./routes/WishListRoute")
+const bagRoutes = require("./routes/BagRoute")
+//const bagRoute = require("./routes/bagRoute")
+
+// middlewares 
 app.use(cors());
 app.use(express.json());
+
+
+//routes
+app.use("/user", userRoutes);
+app.use("/product", productRoutes);
+app.use("/wishList", WishListRoutes);
+app.use("/bag", bagRoutes);
+
+// app.use(errorMiddleWare);
+
 
 const PORT = process.env.PORT || 8080
 

@@ -30,7 +30,7 @@ const HomeImageSlides = () => {
                     <img
                         src={item}
                         key={idx}
-                        className={slide === idx ? "slide" : "slide slide-hidden"}
+                        className={slide === idx ? "slide scale-effect" : "slide slide-hidden"}
                     />
                 );
             })}
@@ -54,4 +54,4 @@ const HomeImageSlides = () => {
         </div>
     );
 };
-export default HomeImageSlides
+export default HomeImageSlides;

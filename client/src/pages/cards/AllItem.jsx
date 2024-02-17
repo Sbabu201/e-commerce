@@ -1,23 +1,43 @@
-import React from 'react'
-import login from "../../assets/login4.jpg"
+import React from 'react';
+import login from "../../assets/login4.jpg";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { useDispatch } from 'react-redux';
+import { addWishList } from '../../store/reducres/wishListReducers';
+import { useNavigate } from 'react-router-dom';
+const AllItem = ({ item }) => {
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const moveToWishList = async () => {
+        const userId = localStorage.getItem("userId")
+        dispatch(addWishList({ user: userId, product: item?._id, finalPrice: item?.price }))
 
-const AllItem = () => {
+    };
+    const productHandle = () => {
+        localStorage.setItem("productId", item._id)
+        navigate("/product")
+    }
+    // console.log('item', item)
     return (
-        <div className='md:h-[300px] h-72 w-[46%] md:w-1/5  shadow-md flex flex-col justify-between'>
-            <div className='h-4/5 w-full object-cover relative inline-block group '>
-                <img className="h-4/5  w-full" src={login} alt="" />
-                <button class="absolute  left-1/2 bottom-0  w-full bg-blue-200  h-10 rounded-md font-bold  transform -translate-x-1/2 -translate-y-1/2  text-black px-4   opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    WISHLIST <FavoriteBorderIcon />
+        <>
+            <div className='md:h-[400px] gap-2 h-72 w-[46%] md:w-1/5 shadow-md flex cursor-pointer flex-col justify-between rounded-md transition-transform transform-gpu hover:scale-105'>
+                <div className='h-80% w-full flex flex-col justify-between' onClick={productHandle}>
+                    <div className='h-[75%]  w-full object-cover aspect[21/9] relative inline-block group'>
+                        <img className=" h-[250px] w-full object-cover rounded-md" src={item?.image1[0]} alt="" />
+
+                    </div>
+                    <div className='pl-5 w-full h-[15%] flex flex-col  gap-2'>
+                        <p className='text-md'>{item?.name}</p>
+                        <p className='font-bold'>price : {item?.price} RS</p>
+                    </div>
+                </div>
+                <button className='w-full bg-blue-500 h-[10%] rounded-lg' onClick={moveToWishList}>
+                    <span className="flex justify-center items-center font-bold">
+                        WISHLIST <FavoriteBorderIcon />
+                    </span>
                 </button>
             </div>
-            <div className='pl-5 w-full  h-1/5 '>
-                <p className='text-md'>Title</p>
-                <p className='font-bold'>price : 999</p>
-            </div>
-
-        </div>
-    )
+        </>
+    );
 }
 
-export default AllItem
+export default AllItem;
