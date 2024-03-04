@@ -3,8 +3,8 @@ const wishListModel = require("../models/WishListModel")
 exports.addWishListController = async (req, res) => {
     try {
 
-        const { user, product, finalPrice } = req.body;
-        if (!product || !finalPrice) {
+        const { user, product, finalPrice, quantity, color, size } = req.body;
+        if (!product || !finalPrice || !quantity || !color || !size) {
             return res.status(400).send({
                 message: "enter valid document",
                 success: false
@@ -19,7 +19,7 @@ exports.addWishListController = async (req, res) => {
             })
         }
 
-        const newWishList = new wishListModel({ user, product, finalPrice });
+        const newWishList = new wishListModel({ user, product, finalPrice, quantity, color, size });
         await newWishList.save();
 
 

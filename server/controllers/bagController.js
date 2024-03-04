@@ -3,8 +3,8 @@ const bagModel = require("../models/bagModel")
 exports.addToBagByIdController = async (req, res) => {
     try {
 
-        const { user, product, quantity, finalPrice } = req.body;
-        if (!user || !quantity || !product || !finalPrice) {
+        const { user, product, quantity, finalPrice, color, size } = req.body;
+        if (!user || !quantity || !product || !finalPrice || !color || !size) {
             return res.status(400).send({
                 message: "enter valid document",
                 success: false
@@ -18,7 +18,7 @@ exports.addToBagByIdController = async (req, res) => {
             })
         }
 
-        const bagitem = new bagModel({ user, product, quantity, finalPrice });
+        const bagitem = new bagModel({ user, product, quantity, finalPrice, color, size });
         await bagitem.save();
 
 

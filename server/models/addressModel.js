@@ -1,31 +1,40 @@
 const mongoose = require("mongoose");
-const wishListSchema = new mongoose.Schema({
+const addressSchema = new mongoose.Schema({
     user: {
         type: mongoose.Types.ObjectId,
         ref: "User",
     },
-    product: {
-        type: mongoose.Types.ObjectId,
-        ref: "Product",
-    },
-    finalPrice: {
+    street: {
         type: String,
         required: true
     },
-    quantity: {
+    city: {
         type: String,
         required: true
     },
-    color: {
+    state: {
         type: String,
         required: true
     },
-    size: {
+    postalCode: {
         type: String,
         required: true
+    },
+    country: {
+        type: String,
+        required: true
+    },
+    contactNumber: {
+        type: String,
+        required: true
+        // required: true
+    },
+    altContactNumber: {
+        type: String,
+
     },
 
 }, { timestamps: true });
-const model = mongoose.model("Wishlist", wishListSchema);
+const model = mongoose.model("Address", addressSchema);
 
 module.exports = model;

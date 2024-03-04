@@ -5,8 +5,9 @@ import { useSelector } from 'react-redux';
 
 const AllProduct = () => {
     const products = useSelector(state => state.productReducer.productItems);
+    console.log('products', products)
     const query = JSON.parse(localStorage.getItem("query"));
-
+    console.log('query', query)
     const [currentPage, setCurrentPage] = useState(1);
     const [filters, setFilters] = useState({
         category: query?.category || '',
@@ -49,7 +50,7 @@ const AllProduct = () => {
     };
 
     return (
-        <div className='mt-20 bg-gray-300 flex  '>
+        <div className='mt-20  flex  '>
             <div className='md:min-h-screen  h-fit w-1/5 flex flex-col border  border-gray-200'>
                 <div className='p-4'>
                     <h2 className='font-semibold'>Category</h2>
@@ -85,20 +86,28 @@ const AllProduct = () => {
                     <h2 className='font-semibold'>Brand</h2>
                     <div className='mt-2'>
                         <label className='inline-flex items-center'>
-                            <input type='checkbox' className='form-checkbox' />
-                            <span className='ml-2'>Brand 1</span>
+                            <input type='checkbox'  checked={query?.brand === "hrx"} className='form-checkbox' />
+                            <span className='ml-2'>hrx</span>
                         </label>
                         <label className='inline-flex items-center'>
-                            <input type='checkbox' className='form-checkbox' />
-                            <span className='ml-2'>Brand 2</span>
+                            <input type='checkbox' checked={query?.brand === "puma"} className='form-checkbox' />
+                            <span className='ml-2'>puma</span>
                         </label>
                         <label className='inline-flex items-center'>
-                            <input type='checkbox' className='form-checkbox' />
-                            <span className='ml-2'>Brand 3</span>
+                            <input type='checkbox' checked={query?.brand === "nike"} className='form-checkbox' />
+                            <span className='ml-2'>nike</span>
                         </label>
                         <label className='inline-flex items-center'>
-                            <input type='checkbox' className='form-checkbox' />
-                            <span className='ml-2'>Brand 4</span>
+                            <input type='checkbox' checked={query?.brand === "adidas"} className='form-checkbox' />
+                            <span className='ml-2'>adidas</span>
+                        </label>
+                        <label className='inline-flex items-center'>
+                            <input type='checkbox' checked={query?.brand === "beingHuman"} className='form-checkbox' />
+                            <span className='ml-2'>beingHuman</span>
+                        </label>
+                        <label className='inline-flex items-center'>
+                            <input type='checkbox' checked={query?.brand === "killer"} className='form-checkbox' />
+                            <span className='ml-2'>killer</span>
                         </label>
                     </div>
                 </div>
@@ -129,7 +138,7 @@ const AllProduct = () => {
 
             <div className='h-full w-full'>
                 {/* Right panel for product items */}
-                <div className='w-4/5 h-full flex justify-center gap-2  md:gap-4 md:justify-evenly md:w-full md:p-12 flex-wrap'>
+                <div className='w-4/5 min-h-screen flex justify-center gap-4   md:justify-evenly  md:w-full  md:p-10 flex-wrap'>
                     {/* Render list items for the current page */}
                     {currentItems.map((item) => (
                         <AllItem key={item._id} item={item} />

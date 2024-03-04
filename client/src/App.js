@@ -19,6 +19,10 @@ import { Toaster } from "react-hot-toast"
 import FirstCheck from './components/FirstCheck';
 import Profile from './pages/Profile';
 import AddProduct from './pages/utilities/AddProduct';
+import Orders from './pages/Orders';
+import Loader from './pages/cards/Loader';
+import Stepper from './pages/profilePage/Stepper';
+import Stepper1 from './pages/profilePage/Stepper';
 function App() {
 
 
@@ -52,6 +56,8 @@ function App() {
             <Wishlist />
           </FirstCheck>} />
         <Route exact path="/" element={<Home />} />
+        <Route exact path="/stepper" element={<Stepper1 />} />
+        <Route exact path="/loader" element={<Loader />} />
         <Route exact path="/addproduct" element={<AddProduct />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/signup" element={<Signup />} />
@@ -60,6 +66,7 @@ function App() {
         <Route exact path="/men" element={<Men />} />
         <Route exact path="/women" element={<Women />} />
         <Route exact path="/kid" element={<Kid />} />
+        <Route exact path="/order" element={<Orders />} />
 
       </Routes>
       <TogleNavbar>

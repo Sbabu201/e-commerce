@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const wishListSchema = new mongoose.Schema({
+const orderSchema = new mongoose.Schema({
     user: {
         type: mongoose.Types.ObjectId,
         ref: "User",
@@ -8,24 +8,24 @@ const wishListSchema = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: "Product",
     },
+    address: {
+        type: mongoose.Types.ObjectId,
+        ref: "Address",
+    },
     finalPrice: {
         type: String,
-        required: true
-    },
-    quantity: {
-        type: String,
-        required: true
-    },
-    color: {
-        type: String,
-        required: true
+        default: ""
     },
     size: {
         type: String,
-        required: true
+        default: ""
+    },
+    status: {
+        type: String,
+        default: "ordered"
     },
 
 }, { timestamps: true });
-const model = mongoose.model("Wishlist", wishListSchema);
+const model = mongoose.model("Order", orderSchema);
 
 module.exports = model;

@@ -22,6 +22,7 @@ export const addBagItem = createAsyncThunk(
     'bag/addBagItem',
     async (bagItemData, { rejectWithValue }) => {
         try {
+            console.log('bagItemData', bagItemData)
             const response = await axios.post(`/bag/addbag`, bagItemData);
             console.log('res.data', response.data)
             return response.data;

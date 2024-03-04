@@ -21,8 +21,8 @@ const Footer = () => {
                     </div>
                     <div className="w-full md:w-1/4 mb-6 md:mb-0">
                         <h2 className="text-lg font-semibold mb-4">Follow Us</h2>
-                        <div className='flex justify-between w-40 items-center h-1/5'>
-                            <a className='w-1/6 rounded-md ' href="https://instagram.com/_babu.55_" target='blank'><img src={insta} alt="" /></a>
+                        <div className='flex justify-between w-40  items-center h-1/5'>
+                            <a className='w-1/6  rounded-md  ' href="https://instagram.com/_babu.55_" target='blank'><img className='' src={insta} alt="" /></a>
                             <a className='w-1/6 rounded-md ' href="https://github.com/Sbabu201" target='blank'><img src={git} alt="" /></a>
                             <a className='w-1/6 rounded-md ' href="https://twitter.com/_babu55_" target='blank'>  <img src={twitter} alt="" /></a>
                             <a className='w-1/6 rounded-md ' href="https://github.com/Sbabu201" target='blank'> <img src={facebook} alt="" /></a>

@@ -22,6 +22,7 @@ export const addWishList = createAsyncThunk(
     'wishList/addWishList',
     async (wishlistData, { rejectWithValue }) => {
         try {
+            console.log('wishListData', wishlistData)
             const response = await axios.post(`/wishlist/addWishList`, wishlistData);
             console.log('wishListItems', response);
             return response.data;

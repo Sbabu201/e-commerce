@@ -26,7 +26,8 @@ const Navbar = () => {
     }, [dispatch])
     return (
         <div className='flex  fixed top-0  z-10 justify-between items-center text-black bg-white shadow-md w-full h-20 '>
-            <img className='w-1/12  h-20 object-cover' src={logo} alt="" />
+            <NavLink to="/" className='w-1/12  h-20 flex '>
+                <img className='object-cover w-full' src={logo} alt="" /></NavLink>
             <div className='w-5/12 font-bold flex justify-evenly items-center  h-20'>
                 <NavLink to="/men" className="hover:text-sky-400">Men</NavLink>
                 <NavLink to="/women" className="hover:text-sky-400">Women</NavLink>
@@ -47,7 +48,7 @@ const Navbar = () => {
                                 <NavLink to={isLogin ? "/profile" : "/login"} className=" flex justify-center text-white px-20 h-12 items-center w-1/3 bg-blue-300 rounded-sm"  >{isLogin ? "Account" : "login/signUp"}</NavLink>
                             </div>
                             <div className=" border-b-2 flex flex-col justify-evenly w-full h-2/5">
-                                <NavLink to="/" className="flex justify-start mx-4 text-black text-center  h-1/6 ">orders</NavLink>
+                                <NavLink to="/order" className="flex justify-start mx-4 text-black text-center  h-1/6 ">orders</NavLink>
                                 <NavLink to="/wishlist" className="flex justify-start mx-4 text-black text-center  h-1/6  ">wishlist</NavLink>
                                 <NavLink to="/address" className="flex  justify-start items-start mx-4 text-black text-center  h-1/6 w-full">saved addresses</NavLink>
                             </div>

@@ -11,18 +11,25 @@ import pant from "../../assets/pant.avif"
 import belt from "../../assets/belt.jpg"
 import kurta from "../../assets/kurta.webp"
 export const menBrand = () => {
-    return [{ catagory: "men", brand: "hrx", poster: hrx }, { catagory: "men", brand: "puma", poster: puma }, { catagory: "men", brand: "nike", poster: nike }, { catagory: "men", brand: "adidas", poster: adidas }, { catagory: "men", brand: "beingHuman", poster: being }, { catagory: "men", brand: "killer", poster: killer }]
+    return [{ gender: "men", brand: "hrx", poster: hrx }, { gender: "men", brand: "puma", poster: puma }, { gender: "men", brand: "nike", poster: nike }, { gender: "men", brand: "adidas", poster: adidas }, { gender: "men", brand: "beingHuman", poster: being }, { gender: "men", brand: "killer", poster: killer }]
         ;
 };
 export const mencatagory = () => {
-    return [{ catagory: "men", name: "shoe", poster: shoe }, { catagory: "men", name: "shirt", poster: shirt }, { catagory: "men", name: "pants", poster: pant }, { catagory: "men", name: "belt", poster: belt }, { catagory: "men", name: "kurta", poster: kurta }, { catagory: "men", name: "t-shirt", poster: tshirt }];
+    return [{ gender: "men", category: "shoe", poster: shoe }, { gender: "men", category: "shirt", poster: shirt }, { gender: "men", category: "pants", poster: pant }, { gender: "men", category: "belt", poster: belt }, { gender: "men", category: "kurta", poster: kurta }, { gender: "men", category: "t-shirt", poster: tshirt }];
 
 };
 export const womenBrand = () => {
-    return [{ catagory: "women", name: "hrx", poster: hrx }, { catagory: "women", name: "puma", poster: puma }, { catagory: "women", name: "nike", poster: nike }, { catagory: "women", name: "adidas", poster: adidas }, { catagory: "women", name: "beingHuman", poster: being }, { catagory: "women", name: "killer", poster: killer }]
+    return [{ gender: "women", brand: "hrx", poster: hrx }, { gender: "women", brand: "puma", poster: puma }, { gender: "women", brand: "nike", poster: nike }, { gender: "women", brand: "adidas", poster: adidas }, { gender: "women", brand: "beingHuman", poster: being }, { gender: "women", brand: "killer", poster: killer }]
 };
 export const womenCatagory = () => {
-    return [{ catagory: "women", name: "shoe", poster: shoe }, { catagory: "women", name: "shirt", poster: shirt }, { catagory: "women", name: "pants", poster: pant }, { catagory: "women", name: "belt", poster: belt }, { catagory: "women", name: "kurta", poster: kurta }, { catagory: "women", name: "t-shirt", poster: tshirt }];
+    return [{ gender: "women", category: "shoe", poster: shoe }, { gender: "women", category: "shirt", poster: shirt }, { gender: "women", category: "pants", poster: pant }, { gender: "women", category: "belt", poster: belt }, { gender: "women", category: "kurta", poster: kurta }, { gender: "women", category: "t-shirt", poster: tshirt }];
+
+};
+export const Brand = () => {
+    return [{ brand: "hrx", poster: hrx }, { brand: "puma", poster: puma }, { brand: "nike", poster: nike }, { brand: "adidas", poster: adidas }, { brand: "beingHuman", poster: being }, { brand: "killer", poster: killer }]
+};
+export const Catagory = () => {
+    return [{ category: "shoe", poster: shoe }, { category: "shirt", poster: shirt }, { category: "pants", poster: pant }, { category: "belt", poster: belt }, { category: "kurta", poster: kurta }, { category: "t-shirt", poster: tshirt }];
 
 };
 

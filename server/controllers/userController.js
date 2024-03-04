@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt")
 const userModel = require("../models/userModel")
 const jwt = require("jsonwebtoken");
+const addressModel = require("../models/addressModel")
 
 exports.getAllUserController = async (req, res) => {
 
@@ -111,6 +112,66 @@ exports.signUpUserController = async (req, res) => {
         console.log(error)
         return res.status(400).send({
             message: "registratiion  failed",
+            success: false,
+            error
+
+        })
+    }
+}
+// address controllers 
+
+exports.getAllAddressController = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const allAddress = await addressModel.find({ user: id }).populate("user");
+        // console.log('allAddress', allAddress);
+        if (allAddress.length === 0) {
+            return res.status(200).json({
+                success: false,
+                message: "no item in the address"
+            });
+        }
+        return res.status(200).json({
+            success: true,
+            message: "successfully got all the addresses",
+            allAddress
+        });
+
+    } catch (error) {
+        console.log(error)
+        return res.status(400).send({
+            message: "address failed to get",
+            success: false,
+            error
+
+        })
+    }
+}
+
+exports.addAddressController = async (req, res) => {
+    try {
+
+        const { user, state, city, street, postalCode, country, contactNumber, altContactNumber } = req.body;
+        if (!state || !city || !street || !postalCode || !country || !contactNumber) {
+            return res.status(400).send({
+                message: "enter valid document",
+                success: false
+            })
+        }
+
+        const newAddressList = new addressModel({ user, state, city, street, postalCode, country, contactNumber, altContactNumber });
+        await newAddressList.save();
+
+        return res.status(200).json({
+            success: true,
+            message: "Added to address successfully",
+            newAddressList
+        });
+
+    } catch (error) {
+        console.log('error', error)
+        return res.status(400).send({
+            message: "failed to add the addressaddress",
             success: false,
             error
 

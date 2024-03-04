@@ -24,12 +24,16 @@ const Bag = () => {
 
     return (
         <div className='flex flex-col justify-between min-h-screen'>
-            <div className='pt-20 flex flex-col md:flex-row m-20 items-start gap-5 min-h-fit'>
-                <div className='bg-transparent gap-4 w-full flex-col flex justify-between md:w-2/3 h-max '>
+            <div className='pt-20 flex flex-col md:flex-row m-20 items-start justify-evenly gap-5 min-h-fit'>
+                <div className='  gap-4 w-full flex-col flex justify-between md:w-3/6 h-max '>
                     {currentItems.map((item, i) => (<BagCard key={i} item={item} />))}
                 </div>
                 {bagItems?.length === 0 && <p className='flex justify-start'>Bag is Empty</p>}
-                {bagItems?.length > 0 && <OrderDetails pageReload={pageReloadParent} />}
+
+                {bagItems?.length > 0 &&
+                    <OrderDetails pageReload={pageReloadParent} />
+                }
+
             </div>
 
             {/* Pagination controls */}
@@ -47,6 +51,7 @@ const Bag = () => {
                 </div>
             )}
         </div>
+
     )
 }
 

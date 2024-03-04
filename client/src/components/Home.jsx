@@ -7,13 +7,12 @@ import axios from 'axios';
 import { addToWishList, setWishList } from '../store/reducres/wishListReducers';
 import { useEffect } from 'react';
 import { addToBag, setBag } from '../store/reducres/bagreducer';
-import { menBrand, mencatagory } from '../pages/sections/Items';
+import { Brand, Catagory } from '../pages/sections/Items';
 const Home = () => {
-    const arr1 = menBrand();
-    const arr2 = mencatagory();
-    const arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 6, 7]
+    const arr1 = Brand();
+    const arr2 = Catagory();
     return (
-        <div className='bg-gray-300'>
+        <div className='bg-white'>
             <div className='pt-20 flex flex-col justify-center items-center h-screen  '>
                 <HomeImageSlides />
             </div>

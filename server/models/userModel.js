@@ -16,38 +16,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-
-    address: {
-        street: {
-            type: String,
-            default: ""
-        },
-        city: {
-            type: String,
-            default: ""
-        },
-        state: {
-            type: String,
-            default: ""
-        },
-        postalCode: {
-            type: String,
-            default: ""
-        },
-        country: {
-            type: String,
-            default: ""
-        },
-        contactNumber: {
-            type: String,
-            default: ""
-            // required: true
-        },
-        altContactNumber: {
-            type: String,
-
-        },
-    }
+    // address: {
+    //     type: mongoose.Types.ObjectId,
+    //     ref: "Address",
+    // },
 
 }, { timestamps: true });
 const model = mongoose.model("User", userSchema);

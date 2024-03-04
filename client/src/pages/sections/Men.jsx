@@ -11,7 +11,7 @@ const Men = () => {
     const arr2 = mencatagory();
 
     return (
-        <div className='bg-gray-300'>
+        <div className='bg-white'>
             <div className='pt-20 flex flex-col justify-center items-center h-screen  '>
                 <HomeImageSlides />
             </div>

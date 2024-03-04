@@ -12,19 +12,16 @@ const productSchema = new mongoose.Schema({
         type: String,
         default: ""
     }]
-
     ,
     gender: {
         type: String,
-        default: "men"
-    }
-    ,
+    },
     featured: {
         type: Boolean,
         default: false
     }
     ,
-    catagory: {
+    category: {
         type: String,
         required: true
     },
@@ -40,24 +37,137 @@ const productSchema = new mongoose.Schema({
         type: Number,
         default: 1
     },
-    totalRatings: {
-        type: Number,
-        default: 0
-    },
-    avgRatings: {
-        type: Number,
-        default: 0
-    },
-    color: [
-        {
-            type: String
+    colors: {
+        red: {
+            small: {
+                size: {
+                    type: String,
+                    default: "s"
+                },
+                quantity: {
+                    type: Number,
+                    default: 0
+                }
+            },
+            medium: {
+                size: {
+                    type: String,
+                    default: "m"
+                },
+                quantity: {
+                    type: Number,
+                    default: 0
+                }
+            },
+            large: {
+                size: {
+                    type: String,
+                    default: "l"
+                },
+                quantity: {
+                    type: Number,
+                    default: 0
+                }
+            },
+        },
+        blue: {
+            small: {
+                size: {
+                    type: String,
+                    default: "s"
+                },
+                quantity: {
+                    type: Number,
+                    default: 0
+                }
+            },
+            medium: {
+                size: {
+                    type: String,
+                    default: "m"
+                },
+                quantity: {
+                    type: Number,
+                    default: 0
+                }
+            },
+            large: {
+                size: {
+                    type: String,
+                    default: "l"
+                },
+                quantity: {
+                    type: Number,
+                    default: 0
+                }
+            },
+        },
+        green: {
+            small: {
+                size: {
+                    type: String,
+                    default: "s"
+                },
+                quantity: {
+                    type: Number,
+                    default: 0
+                }
+            },
+            medium: {
+                size: {
+                    type: String,
+                    default: "m"
+                },
+                quantity: {
+                    type: Number,
+                    default: 0
+                }
+            },
+            large: {
+                size: {
+                    type: String,
+                    default: "l"
+                },
+                quantity: {
+                    type: Number,
+                    default: 0
+                }
+            },
+        },
+        white: {
+
+            small: {
+                size: {
+                    type: String,
+                    default: "s"
+                },
+                quantity: {
+                    type: Number,
+                    default: 0
+                }
+            },
+            medium: {
+                size: {
+                    type: String,
+                    default: "m"
+                },
+                quantity: {
+                    type: Number,
+                    default: 0
+                }
+            },
+            large: {
+                size: {
+                    type: String,
+                    default: "l"
+                },
+                quantity: {
+                    type: Number,
+                    default: 0
+                }
+            },
         }
-    ],
-    size: [
-        {
-            type: String
-        }
-    ],
+    },
     wishlist: {
         type: mongoose.Types.ObjectId,
         ref: "Wishlist",
