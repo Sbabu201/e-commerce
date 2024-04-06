@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
 import toast from "react-hot-toast";
+import { URL } from "../../pages/utilities/serverlink";
 
 // Async thunk to fetch all bag items
 export const getAllOrders = createAsyncThunk(
@@ -8,7 +9,7 @@ export const getAllOrders = createAsyncThunk(
     async (_, { rejectWithValue }) => {
         try {
             const userId = localStorage.getItem("userId")
-            const response = await axios.get(`/order/orderId/${userId}`);
+            const response = await axios.get(`${URL}/order/orderId/${userId}`);
             // console.log('response', response)
             return response.data;
         } catch (error) {
@@ -23,7 +24,7 @@ export const addOrder = createAsyncThunk(
     async (orderData, { rejectWithValue }) => {
         try {
             console.log('orderData', orderData)
-            const response = await axios.post(`/order/addOrder`, orderData);
+            const response = await axios.post(`${URL}/order/addOrder`, orderData);
             console.log('res.data', response.data)
             return response.data;
         } catch (error) {

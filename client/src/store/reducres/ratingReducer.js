@@ -1,13 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
 import toast from "react-hot-toast";
+import { URL } from "../../pages/utilities/serverlink";
 
 // Async thunk to get all wishlists
 export const getAllRating = createAsyncThunk(
     'rating/getAllrating',
     async (_, { rejectWithValue }) => {
         try {
-            const response = await axios.get(`/product/allRating`)
+            const response = await axios.get(`${URL}/product/allRating`)
             console.log('response', response)
             return response.data;
         } catch (error) {
@@ -21,7 +22,7 @@ export const editRating = createAsyncThunk(
         try {
             console.log(productId)
             // console.log('ratingValue', ratingValue)
-            const response = await axios.put(`/product/edit/${productId?.product}`, { ratingValue: productId?.ratingValue })
+            const response = await axios.put(`${URL}/product/edit/${productId?.product}`, { ratingValue: productId?.ratingValue })
             console.log('response', response)
             return response.data;
         } catch (error) {
@@ -36,7 +37,7 @@ export const addRating = createAsyncThunk(
     'rating/addRating',
     async (ratingData, { rejectWithValue }) => {
         try {
-            const response = await axios.post(`/product/addRating`, ratingData);
+            const response = await axios.post(`${URL}/product/addRating`, ratingData);
             console.log('ratingItem', response);
             return response.data;
         } catch (error) {

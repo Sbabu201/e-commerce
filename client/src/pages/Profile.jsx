@@ -6,6 +6,8 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import { URL } from './utilities/serverlink';
+
 
 const style = {
     position: 'absolute',
@@ -28,7 +30,7 @@ const Profile = () => {
     useEffect(() => {
         const getData = async () => {
             try {
-                const user = await axios.get(`user/user/${userId}`);
+                const user = await axios.get(`${URL}user/user/${userId}`);
                 setUser(user.data.existUser);
                 setLoading(false); // Set loading to false when data is fetched
             } catch (error) {

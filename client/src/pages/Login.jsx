@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from "axios"
 import toast from 'react-hot-toast'
 import { loginAuth, logoutAuth } from '../store/reducres/authReducer'
+import { URL } from './utilities/serverlink';
 import { useDispatch } from 'react-redux'
 const Login = () => {
     const navigate = useNavigate();
@@ -26,7 +27,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            const data = await axios.post("user/login", {
+            const data = await axios.post(`${URL}/user/login`, {
                 email: input.email, password: input.password,
             });
             console.log('data', data)

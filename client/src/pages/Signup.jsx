@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import axios from "axios"
 import toast from 'react-hot-toast'
+import { URL } from './utilities/serverlink'
 
 
 const Signup = () => {
@@ -52,7 +53,7 @@ const Signup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const user = await axios.post("user/signup", {
+            const user = await axios.post(`${URL}/user/signup`, {
                 email: input.email, password: input.password, name: input.name, profilePhoto: image,
             })
             console.log('data', user)

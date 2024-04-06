@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
 import toast from "react-hot-toast";
+import { URL } from "../../pages/utilities/serverlink";
 
 // Async thunk to get all wishlists
 export const getAllWishLists = createAsyncThunk(
@@ -8,7 +9,7 @@ export const getAllWishLists = createAsyncThunk(
     async (_, { rejectWithValue }) => {
         try {
             const userId = localStorage.getItem("userId");
-            const response = await axios.get(`/wishlist/allWishList/${userId}`)
+            const response = await axios.get(`${URL}/wishlist/allWishList/${userId}`)
             // console.log('response', response)
             return response.data;
         } catch (error) {
@@ -23,7 +24,7 @@ export const addWishList = createAsyncThunk(
     async (wishlistData, { rejectWithValue }) => {
         try {
             console.log('wishListData', wishlistData)
-            const response = await axios.post(`/wishlist/addWishList`, wishlistData);
+            const response = await axios.post(`${URL}/wishlist/addWishList`, wishlistData);
             console.log('wishListItems', response);
             return response.data;
         } catch (error) {
@@ -37,7 +38,7 @@ export const deleteWishList = createAsyncThunk(
     'wishList/deleteWishList',
     async (wishlistId, { rejectWithValue }) => {
         try {
-            const deleted = await axios.delete(`/wishlist/removeWishList/${wishlistId}`);
+            const deleted = await axios.delete(`${URL}/wishlist/removeWishList/${wishlistId}`);
             // console.log('deleted', deleted);
             return deleted.data;
         } catch (error) {

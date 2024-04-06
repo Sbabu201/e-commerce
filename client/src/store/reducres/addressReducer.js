@@ -1,14 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
 import toast from "react-hot-toast";
-
+import { URL } from "../../pages/utilities/serverlink";
 // Async thunk to get all wishlists
 export const getAllAddressLists = createAsyncThunk(
     'address/getAllAddress',
     async (_, { rejectWithValue }) => {
         try {
             const userId = localStorage.getItem("userId");
-            const response = await axios.get(`/user/allAddress/${userId}`)
+            const response = await axios.get(`${URL}/user/allAddress/${userId}`)
             // console.log('response', response)
             return response.data;
         } catch (error) {
@@ -23,7 +23,7 @@ export const addAddress = createAsyncThunk(
     async (addressData, { rejectWithValue }) => {
         try {
             console.log('addressData', addressData)
-            const response = await axios.post(`/user/addAddress`, addressData);
+            const response = await axios.post(`${URL}/user/addAddress`, addressData);
             console.log('address', response);
             return response.data;
         } catch (error) {
@@ -86,19 +86,19 @@ const addressSlice = createSlice({
                 state.error = action.payload;
 
             })
-            // .addCase(deleteWishList.pending, (state) => {
-            //     state.status = 'loading';
-            // })
-            // .addCase(deleteWishList.fulfilled, (state, action) => {
-            //     state.status = 'succeeded';
-            //     state.wishListItems = state.wishListItems.filter(item => item._id !== action.payload.deleteWishlist._id);
-            //     // console.log('action.payload', action.payload)
-            //     toast.success(action.payload.message);
-            // })
-            // .addCase(deleteWishList.rejected, (state, action) => {
-            //     state.status = 'failed';
-            //     state.error = action.payload;
-            // });
+        // .addCase(deleteWishList.pending, (state) => {
+        //     state.status = 'loading';
+        // })
+        // .addCase(deleteWishList.fulfilled, (state, action) => {
+        //     state.status = 'succeeded';
+        //     state.wishListItems = state.wishListItems.filter(item => item._id !== action.payload.deleteWishlist._id);
+        //     // console.log('action.payload', action.payload)
+        //     toast.success(action.payload.message);
+        // })
+        // .addCase(deleteWishList.rejected, (state, action) => {
+        //     state.status = 'failed';
+        //     state.error = action.payload;
+        // });
     }
 });
 

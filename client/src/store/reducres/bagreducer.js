@@ -1,14 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
 import toast from "react-hot-toast";
-
+import { URL } from "../../pages/utilities/serverlink";
 // Async thunk to fetch all bag items
 export const getAllBagItems = createAsyncThunk(
     'bag/getAllBagItems',
     async (_, { rejectWithValue }) => {
         try {
             const userId = localStorage.getItem("userId")
-            const response = await axios.get(`/bag/allbag/${userId}`);
+            const response = await axios.get(`${URL}/bag/allbag/${userId}`);
             // console.log('response', response)
             return response.data;
         } catch (error) {
@@ -23,7 +23,7 @@ export const addBagItem = createAsyncThunk(
     async (bagItemData, { rejectWithValue }) => {
         try {
             console.log('bagItemData', bagItemData)
-            const response = await axios.post(`/bag/addbag`, bagItemData);
+            const response = await axios.post(`${URL}/bag/addbag`, bagItemData);
             console.log('res.data', response.data)
             return response.data;
         } catch (error) {
@@ -37,7 +37,7 @@ export const deleteBagItem = createAsyncThunk(
     'bag/deleteBagItem',
     async (bagItemId, { rejectWithValue }) => {
         try {
-            const deleted = await axios.delete(`/bag/removeBag/${bagItemId}`);
+            const deleted = await axios.delete(`${URL}/bag/removeBag/${bagItemId}`);
             return deleted.data;
         } catch (error) {
             return rejectWithValue(error.response.data);
