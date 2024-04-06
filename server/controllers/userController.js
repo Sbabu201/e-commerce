@@ -1,4 +1,4 @@
-const bcrypt = require("bcrypt")
+const bcrypt = require("bcryptjs")
 const userModel = require("../models/userModel")
 const jwt = require("jsonwebtoken");
 const addressModel = require("../models/addressModel")
@@ -25,6 +25,7 @@ exports.getUserByIdController = async (req, res) => {
         })
 
     } catch (error) {
+        ``
         console.log(error)
         return res.status(400).send({
             message: "user failed to get",

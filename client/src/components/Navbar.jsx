@@ -25,7 +25,7 @@ const Navbar = () => {
         dispatch(getAllProductItems())
     }, [dispatch])
     return (
-        <div className='flex  fixed top-0  z-10 justify-between items-center text-black bg-white shadow-md w-full h-20 '>
+        <div className='flex  fixed bottom-0 z-10 justify-between items-center text-black bg-white shadow-md w-full h-20 '>
             <NavLink to="/" className='w-1/12  h-20 flex '>
                 <img className='object-cover w-full' src={logo} alt="" /></NavLink>
             <div className='w-5/12 font-bold flex justify-evenly items-center  h-20'>
