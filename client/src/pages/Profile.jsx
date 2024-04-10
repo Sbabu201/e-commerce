@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { URL } from './utilities/serverlink';
-
+import { useNavigate } from "react-router-dom"
 
 const style = {
     position: 'absolute',
@@ -21,6 +21,7 @@ const style = {
     p: 4,
 };
 const Profile = () => {
+    const navigate = useNavigate()
     const userId = localStorage.getItem("userId");
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(true); // Add loading state
@@ -28,14 +29,18 @@ const Profile = () => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     useEffect(() => {
+        console.log('userId', userId)
+        if (!userId) {
+            navigate("/login")
+        }
         const getData = async () => {
             try {
-                const user = await axios.get(`${URL}user/user/${userId}`);
+                const user = await axios.get(`${URL}/user/user/${userId}`);
                 setUser(user.data.existUser);
                 setLoading(false); // Set loading to false when data is fetched
             } catch (error) {
                 console.log('error', error)
-                toast.error('hello');
+
                 setLoading(false); // Set loading to false even if there's an error
             }
         }
@@ -43,9 +48,11 @@ const Profile = () => {
         getData();
     }, [userId]); // Add userId to dependencies
 
+
     if (loading) {
         return <Loader />; // Render the loader while data is being fetched
     }
+
     return (
         <>
             <div className='mt-32 flex items-center flex-col  gap-20'>

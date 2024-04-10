@@ -55,6 +55,10 @@ function App() {
           <FirstCheck>
             <Wishlist />
           </FirstCheck>} />
+        <Route exact path="/order" element={
+          <FirstCheck>
+            <Orders />
+          </FirstCheck>} />
         <Route exact path="/" element={<Home />} />
         <Route exact path="/stepper" element={<Stepper1 />} />
         <Route exact path="/loader" element={<Loader />} />
@@ -66,7 +70,7 @@ function App() {
         <Route exact path="/men" element={<Men />} />
         <Route exact path="/women" element={<Women />} />
         <Route exact path="/kid" element={<Kid />} />
-        <Route exact path="/order" element={<Orders />} />
+
 
       </Routes>
       <TogleNavbar>

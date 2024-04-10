@@ -10,7 +10,7 @@ import { FaStar } from 'react-icons/fa'; // Import star icon from react-icons/fa
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Loader from './cards/Loader';
-
+import toast from "react-hot-toast"
 const style = {
     position: 'absolute',
     top: '50%',
@@ -67,10 +67,16 @@ const ProductView = () => {
 
     // add to bag 
     const addToBagHandle = async (e) => {
-        setLoading(true)
+
 
         e.preventDefault()
+        if (!userId) {
+            toast.error("you haven't logged in yet ..");
+            return
+        }
         try {
+            setLoading(true)
+
             dispatch(addBagItem({ user: userId, product: foundObject?._id, quantity: formData?.quantity, finalPrice: foundObject?.price - foundObject?.discount, color: formData?.color, size: formData?.size }));
         } catch (error) {
             console.error("Error adding to bag:", error);
@@ -84,6 +90,11 @@ const ProductView = () => {
     const moveToWishList = async (e) => {
 
         e.preventDefault()
+
+        if (!userId) {
+            toast.error("you haven't logged in yet ..");
+            return
+        }
         try {
             setLoading(true)
 

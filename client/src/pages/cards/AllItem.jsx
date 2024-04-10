@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { FaHeart } from "react-icons/fa6";
-
+import toast from "react-hot-toast"
 const style = {
     position: 'absolute',
     top: '50%',
@@ -42,6 +42,12 @@ const AllItem = ({ item }) => {
     const moveToWishList = async (e) => {
         e.preventDefault();
         const userId = localStorage.getItem("userId");
+
+        if (!userId) {
+            toast.error("you haven't logged in yet");
+            return
+        }
+
         dispatch(addWishList({ user: userId, product: item?._id, finalPrice: item?.price - item?.discount, size: formData.size, quantity: formData.quantity, color: formData.color }));
         setFormData({
             size: '',
@@ -73,6 +79,7 @@ const AllItem = ({ item }) => {
 
     return (
         <>
+
             <Modal
                 open={open}
                 onClose={handleClose}

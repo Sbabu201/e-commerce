@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react'
 import WishListItems from './cards/WishListItems'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllWishLists, setWishList } from '../store/reducres/wishListReducers'
-
+import { useNavigate } from "react-router-dom"
 const Wishlist = () => {
+    const navigate = useNavigate()
+    const userId = localStorage.getItem("userId");
     const dispatch = useDispatch();
     const wishListItems = useSelector(state => state.wishListReducers.wishListItems);
     const [currentPage, setCurrentPage] = useState(1);
@@ -20,6 +22,9 @@ const Wishlist = () => {
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
+
+
+
 
     return (
         <div className='w-full min-h-screen flex justify-between flex-col'>

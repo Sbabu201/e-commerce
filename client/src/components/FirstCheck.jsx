@@ -6,16 +6,18 @@ import { authAction } from '../store/reducres/authReducer';
 const FirstCheck = ({ children }) => {
     const navigate = useNavigate();
     let value = useSelector(state => state.authReducer.isLogin);
+    useEffect(() => {
 
-    if (value) {
-        return (
-            children
-        )
-    }
-    else
-        return (
-            navigate("/login")
-        )
+        if (value) {
+            return (
+                children
+            )
+        }
+        else
+            return (
+                navigate("/login")
+            )
+    })
 
 }
 
