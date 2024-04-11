@@ -23,34 +23,36 @@ const HomeImageSlides = () => {
     },
         [slide]);
     return (
-        <div className="carousel">
-            <ArrowCircleLeftSharpIcon onClick={prevSlide} className="arrow arrow-left" />
-            {arr.map((item, idx) => {
-                return (
-                    <img
-                        src={item}
-                        key={idx}
-                        className={slide === idx ? "slide scale-effect" : "slide slide-hidden"}
-                    />
-                );
-            })}
-            <ArrowCircleRightSharpIcon
-                onClick={nextSlide}
-                className="arrow arrow-right"
-            />
-            <span className="indicators">
-                {arr.map((_, idx) => {
+        <div className="w-full md:h-full h-[45%]   ">
+            <div className="carousel">
+                <ArrowCircleLeftSharpIcon onClick={prevSlide} className="arrow arrow-left" />
+                {arr.map((item, idx) => {
                     return (
-                        <button
+                        <img
+                            src={item}
                             key={idx}
-                            className={
-                                slide === idx ? "indicator" : "indicator indicator-inactive"
-                            }
-                            onClick={() => setSlide(idx)}
-                        ></button>
+                            className={slide === idx ? "slide scale-effect " : "slide slide-hidden"}
+                        />
                     );
                 })}
-            </span>
+                <ArrowCircleRightSharpIcon
+                    onClick={nextSlide}
+                    className="arrow arrow-right"
+                />
+                <span className="indicators">
+                    {arr.map((_, idx) => {
+                        return (
+                            <button
+                                key={idx}
+                                className={
+                                    slide === idx ? "indicator" : "indicator indicator-inactive"
+                                }
+                                onClick={() => setSlide(idx)}
+                            ></button>
+                        );
+                    })}
+                </span>
+            </div>
         </div>
     );
 };

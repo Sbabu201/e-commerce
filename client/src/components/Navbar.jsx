@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from "react-router-dom";
 import SearchIcon from '@mui/icons-material/Search';
+import { FaUser } from "react-icons/fa";
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import { TiShoppingCart } from "react-icons/ti";
+import { CiHeart } from "react-icons/ci";
+import { FaRegHeart } from "react-icons/fa6";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import logo from "../assets/logo1.png";
@@ -10,8 +14,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllBagItems } from '../store/reducres/bagreducer';
 import { getAllWishLists } from '../store/reducres/wishListReducers';
 import { getAllProductItems } from '../store/reducres/productReducer';
+import { GiHamburgerMenu } from "react-icons/gi";
+import Drawer from '../pages/cards/Drawer';
+import LeftDrawer from '../pages/cards/Drawer';
 const Navbar = () => {
     const dispatch = useDispatch();
+    const [drawer, setDrawer] = useState(false)
     const isLogin = useSelector(state => state.authReducer.isLogin);
     const bagCount = useSelector(state => state.bagreducer.bagItems);
     const wishCount = useSelector(state => state.wishListReducers.wishListItems);
@@ -19,28 +27,39 @@ const Navbar = () => {
         dispatch(logoutAuth());
         localStorage.clear("userId");
     }
+    const setOpen = (data) => {
+        setDrawer(data)
+    }
     useEffect(() => {
         dispatch(getAllWishLists());
         dispatch(getAllBagItems());
         dispatch(getAllProductItems())
     }, [dispatch])
     return (
-        <div className='flex  fixed top-0 z-10 justify-between items-center text-black bg-white shadow-md w-full h-20 '>
-            <NavLink to="/" className='w-1/12  h-20 flex '>
+        <div className='flex  fixed top-0 z-10 justify-between items-center text-black bg-white shadow-md w-full h-16 md:h-20 '>
+            <NavLink to="/" className='w-[8%] hidden  h-20 md:flex '>
                 <img className='object-cover w-full' src={logo} alt="" /></NavLink>
-            <div className='w-5/12 font-bold flex justify-evenly items-center  h-20'>
-                <NavLink to="/men" className="hover:text-sky-400">Men</NavLink>
-                <NavLink to="/women" className="hover:text-sky-400">Women</NavLink>
-                <NavLink to="/kid" className="hover:text-sky-400">Kids</NavLink>
+            <div className='md:hidden ml-4  flex'>
+                <GiHamburgerMenu onClick={() => { setDrawer(true) }} className='text-base  md:text-base' />
+                <LeftDrawer open={drawer} setOpen={setOpen} />
+
             </div>
-            <div className=' flex items-center w-4/12  h-20'>
-                <form className='mx-10  bg-gray-300 rounded-md flex space-between text-center items-center overflow-hidden  h-1/2 w-full' action="post">
+            <div className='md:w-5/12 w-[20%]  md:font-bold hidden md:flex justify-evenly items-center  h-20'>
+                <NavLink to="/men" className="hover:text-sky-400 text-xs md:text-base"><span className='flex md:hidden'>M</span><span className='hidden md:flex'>Men</span></NavLink>
+                <NavLink to="/women" className="hover:text-sky-400 text-xs md:text-base"><span className='flex md:hidden'>w</span><span className='hidden md:flex'>WoMen</span></NavLink>
+                <NavLink to="/kid" className="hover:text-sky-400 text-xs md:text-base"><span className='flex md:hidden'>k</span><span className='hidden md:flex'>Kid</span></NavLink>
+            </div>
+
+
+            <div className=' flex items-center md:w-4/12 w-[55%]  h-20'>
+                <form className='md:mx-10  bg-gray-300 rounded-md flex space-between text-center items-center overflow-hidden  h-1/2 w-full' action="post">
                     <SearchIcon className='mx-2' />
-                    <input className='w-full h-full p-4 rounded-md  outline-none bg-gray-300 ' type="text" name="search" placeholder='search here' />
+                    <input className='w-full h-full flex p-4 rounded-md  outline-none bg-gray-300 ' type="text" name="search" placeholder='search here' />
                 </form>
             </div>
-            <div className=' flex justify-evenly text-xs font-bold items-center p-2 w-2/12  h-20'>
-                <section className='flex relative group  flex-col items-center cursor-pointer'><PersonOutlineIcon />profile
+            <div className=' flex justify-evenly text-xs font-bold items-center md:p-2 md:w-2/12 w-[30%]  h-20'>
+                <section className='flex relative group  flex-col items-center cursor-pointer'>
+                    <FaUser className='text-sm md:text-base' /><span className='md:flex hidden'>profile</span>
                     <div className="absolute top-10  bg-white w-80 h-80  rounded-md shadow-md  invisible  group-hover:visible transition duration-300">
                         <div className='flex text-center flex-col justify-evenly items-start w-full h-full'>
                             <div className=" border-b-2 flex flex-col justify-center w-full items-center h-2/5">
@@ -58,8 +77,8 @@ const Navbar = () => {
                         </div>
                     </div>
                 </section>
-                <NavLink to="/wishlist" className='flex flex-col items-center text-black'><FavoriteBorderIcon /> wishlist {wishCount && `(${wishCount.length})`}</NavLink>
-                <NavLink to="/bag" className='flex flex-col items-center'><ShoppingCartCheckoutIcon />bag {bagCount && `(${bagCount.length})`}</NavLink>
+                <NavLink to="/wishlist" className='flex md:flex-col relative items-center text-black'><FaRegHeart className='text-base md:text-lg' /> <span className='md:flex hidden'>wishlist</span> <span className=' absolute top-[-7px] text-[10px] md:text-base right-[-10px]'>{wishCount && `(${wishCount.length})`}</span></NavLink>
+                <NavLink to="/bag" className='flex md:flex-col pr-2 relative items-center'><TiShoppingCart className='text-[17px] md:text-lg' /><span className='md:flex hidden'>bag</span> <span className=' absolute top-[-7px] text-[10px] md:text-base right-[-10px]'>{bagCount && `(${bagCount.length})`}</span></NavLink>
             </div>
         </div>
     );
