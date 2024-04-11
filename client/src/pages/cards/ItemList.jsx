@@ -2,19 +2,24 @@ import React, { useState } from 'react';
 import login from "../../assets/login.jpg";
 import { useNavigate } from 'react-router-dom';
 const ItemList = ({ item }) => {
-    console.log('item', item)
     const [items, setItems] = useState(item);
     const navigate = useNavigate()
     // console.log('items', items)
     const handleSection = () => {
-        const obj = {
-            category: items?.category,
-            brand: items?.brand,
-            gender: items?.gender
+        const { gender, category, brand } = items;
+        console.log('items', items)
+        let url = `/allproducts`;
 
+        if (gender) {
+            url += `/${gender}`;
         }
-        localStorage.setItem("query", JSON.stringify(obj))
-        navigate("/allproduct")
+        if (category) {
+            url += `/${category}`;
+        }
+        if (brand) {
+            url += `/${brand}`;
+        }
+        navigate(url);
     }
     return (
         <div onClick={handleSection} className='  bg-sky-50 flex flex-row mx-10 min-w-[300px] w-[400px] transition-transform transform hover:scale-105 h-full object-cover cursor-pointer'>

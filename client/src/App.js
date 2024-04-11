@@ -66,7 +66,7 @@ function App() {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/signup" element={<Signup />} />
         <Route exact path="/product" element={<ProductView />} />
-        <Route exact path="/allproduct" element={<AllProduct />} />
+        <Route exact path="/allproducts/:gender?/:category?/:type?" element={<AllProduct />} />
         <Route exact path="/men" element={<Men />} />
         <Route exact path="/women" element={<Women />} />
         <Route exact path="/kid" element={<Kid />} />

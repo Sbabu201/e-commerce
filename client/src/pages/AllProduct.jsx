@@ -2,61 +2,46 @@
 import React, { useState } from 'react';
 import AllItem from './cards/AllItem';
 import { useSelector } from 'react-redux';
-
+import { useParams } from "react-router-dom"
 const AllProduct = () => {
     const products = useSelector(state => state.productReducer.productItems);
-    console.log('products', products)
-    const query = JSON.parse(localStorage.getItem("query"));
-    console.log('query', query)
+    const params = useParams()
     const [currentPage, setCurrentPage] = useState(1);
     const [filters, setFilters] = useState({
-        category: query?.category || '',
-        brand: query?.brand || '',
-        type: query?.type || '',
+        category: params?.category || null,
+        brand: params?.brand || null,
+        type: params?.type || null,
     });
     const itemsPerPage = 15;
-
-    // Apply filters to products
-    const filteredProducts = products.filter(product => {
-        return (
-            (!filters.category || product.category === filters.category) &&
-            (!filters.brand || product.brand === filters.brand) &&
-            (!filters.type || product.type === filters.type)
-        );
-    });
-
-    // Calculate the total number of pages
+    const filterProducts = (products2, criteria) => {
+        return products2.filter(product => {
+            return criteria.every(criterion => Object.values(product).includes(criterion));
+        });
+    };
+    const filteredProducts = filterProducts(products, Object.values(params).filter(value => value !== undefined))
     const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
-
-    // Calculate the index range of items to display based on the current page
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = currentPage * itemsPerPage;
-
-    // Get the list items for the current page
     const currentItems = filteredProducts.slice(startIndex, endIndex);
-
-    // Function to handle page change
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
     };
-
-    // Function to handle filter change
     const handleFilterChange = (filterName, value) => {
         setFilters({
             ...filters,
             [filterName]: value,
         });
-        setCurrentPage(1); // Reset to the first page when filter changes
+        setCurrentPage(1);
     };
 
     return (
-        <div className='mt-20  flex  '>
+        <div className='mt-24  flex  '>
             <div className='md:min-h-screen  h-fit w-1/5 flex flex-col border  border-gray-200'>
                 <div className='p-4'>
-                    <h2 className='font-semibold'>Category</h2>
-                    <div className='mt-2'>
+                    <p className='font-semibold uppercase'>Categories</p>
+                    <div className='mt-2 flex flex-col gap-2'>
                         <label className='inline-flex items-center'>
-                            <input type='checkbox' className='form-checkbox' />
+                            <input type='checkbox' className='form-checkbox ' />
                             <span className='ml-2'>Category 1</span>
                         </label>
                         <label className='inline-flex items-center'>
@@ -86,27 +71,27 @@ const AllProduct = () => {
                     <h2 className='font-semibold'>Brand</h2>
                     <div className='mt-2'>
                         <label className='inline-flex items-center'>
-                            <input type='checkbox'  checked={query?.brand === "hrx"} className='form-checkbox' />
+                            <input type='checkbox' checked={params?.brand === "hrx"} className='form-checkbox' />
                             <span className='ml-2'>hrx</span>
                         </label>
                         <label className='inline-flex items-center'>
-                            <input type='checkbox' checked={query?.brand === "puma"} className='form-checkbox' />
+                            <input type='checkbox' checked={params?.brand === "puma"} className='form-checkbox' />
                             <span className='ml-2'>puma</span>
                         </label>
                         <label className='inline-flex items-center'>
-                            <input type='checkbox' checked={query?.brand === "nike"} className='form-checkbox' />
+                            <input type='checkbox' checked={params?.brand === "nike"} className='form-checkbox' />
                             <span className='ml-2'>nike</span>
                         </label>
                         <label className='inline-flex items-center'>
-                            <input type='checkbox' checked={query?.brand === "adidas"} className='form-checkbox' />
+                            <input type='checkbox' checked={params?.brand === "adidas"} className='form-checkbox' />
                             <span className='ml-2'>adidas</span>
                         </label>
                         <label className='inline-flex items-center'>
-                            <input type='checkbox' checked={query?.brand === "beingHuman"} className='form-checkbox' />
+                            <input type='checkbox' checked={params?.brand === "beingHuman"} className='form-checkbox' />
                             <span className='ml-2'>beingHuman</span>
                         </label>
                         <label className='inline-flex items-center'>
-                            <input type='checkbox' checked={query?.brand === "killer"} className='form-checkbox' />
+                            <input type='checkbox' checked={params?.brand === "killer"} className='form-checkbox' />
                             <span className='ml-2'>killer</span>
                         </label>
                     </div>

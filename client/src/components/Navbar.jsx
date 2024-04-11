@@ -58,10 +58,10 @@ const Navbar = () => {
                 </form>
             </div>
             <div className=' flex justify-evenly text-xs font-bold items-center md:p-2 md:w-2/12 w-[30%]  h-20'>
-                <section className='flex relative group  flex-col items-center cursor-pointer'>
+                <section className='md:flex hidden relative group  flex-col items-center cursor-pointer'>
                     <FaUser className='text-sm md:text-base' /><span className='md:flex hidden'>profile</span>
-                    <div className="absolute top-10  bg-white w-80 h-80  rounded-md shadow-md  invisible  group-hover:visible transition duration-300">
-                        <div className='flex text-center flex-col justify-evenly items-start w-full h-full'>
+                    <div className="absolute top-10  bg-transparent w-full md:w-80 h-80 flex md:justify-end justify-center rounded-md md:shadow-md  invisible  group-hover:visible transition duration-300">
+                        <div className='flex text-center flex-col justify-evenly items-start w-80 md:w-full h-full'>
                             <div className=" border-b-2 flex flex-col justify-center w-full items-center h-2/5">
                                 <p className='my-3'>{isLogin ? "hello .. account details here " : "welcome ! please login to access the account"}</p>
                                 <NavLink to={isLogin ? "/profile" : "/login"} className=" flex justify-center text-white px-20 h-12 items-center w-1/3 bg-blue-300 rounded-sm"  >{isLogin ? "Account" : "login/signUp"}</NavLink>
