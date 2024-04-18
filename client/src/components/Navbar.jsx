@@ -77,8 +77,8 @@ const Navbar = () => {
                         </div>
                     </div>
                 </section>
-                <NavLink to="/wishlist" className='flex md:flex-col relative items-center text-black'><FaRegHeart className='text-base md:text-lg' /> <span className='md:flex hidden'>wishlist</span> <span className=' absolute top-[-7px] text-[10px] md:text-base right-[-10px]'>{wishCount && `(${wishCount.length})`}</span></NavLink>
-                <NavLink to="/bag" className='flex md:flex-col pr-2 relative items-center'><TiShoppingCart className='text-[17px] md:text-lg' /><span className='md:flex hidden'>bag</span> <span className=' absolute top-[-7px] text-[10px] md:text-base right-[-10px]'>{bagCount && `(${bagCount.length})`}</span></NavLink>
+                <NavLink to="/wishlist" className='flex md:flex-col relative items-center text-black'><FaRegHeart className='text-base md:text-lg' /> <span className='md:flex hidden'>wishlist</span> {isLogin && <span className=' absolute top-[-7px] text-[10px] md:text-base right-[-10px]'>{wishCount && `(${wishCount.length})`}</span>}</NavLink>
+                <NavLink to="/bag" className='flex md:flex-col pr-2 relative items-center'><TiShoppingCart className='text-[17px] md:text-lg' /><span className='md:flex hidden'>bag</span>{isLogin && <span className=' absolute top-[-7px] text-[10px] md:text-base right-[-10px]'>{bagCount && `(${bagCount.length})`}</span>}</NavLink>
             </div>
         </div>
     );

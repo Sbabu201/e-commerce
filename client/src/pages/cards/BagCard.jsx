@@ -22,14 +22,14 @@ const BagCard = ({ item }) => {
     };
 
     return (
-        <div className='w-full h-max flex border rounded-sm shadow-md'>
+        <div className='w-full text-xs md:text-base md:h-max h-fit flex border rounded-sm shadow-md'>
             <div className='w-3/5 flex h-52 flex-col  justify-evenly items-start'>
                 <div className='w-full flex flex-col justify-start  pt-5 px-5 h-1/2'>
                     <p className='font-medium'>{item?.product?.name}</p>
                     <p className='font-bold'>{item?.product?.price} RS | discount value: {item?.finalPrice} RS</p>
                     <p className='text-green-500'>You saved {item?.product?.discount} RS</p>
                 </div>
-                <div className='w-full flex items-center  flex-col md:flex-row justify-start gap-4    px-5 pb-5'>
+                <div className='w-full flex items-center  flex-row justify-start gap-4    px-5 pb-5'>
                     <p className='font-bold'>Size: </p> <p className='border border-black px-2 rounded-md'>{item?.size}</p>
                     <p className='font-bold'>Qty: </p><p className='border border-black px-2 rounded-md'>{item?.quantity}</p>
                 </div>

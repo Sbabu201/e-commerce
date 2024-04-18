@@ -177,15 +177,15 @@ const ProductView = () => {
 
             {/* my content  */}
             <div className=' mt-20 mb-4 md:mb-20 w-full gap-10  h-fit justify-center items-center flex-col  md:justify-between md:flex-row flex '>
-                <div className='w-2/5  h-fit flex gap-10   rounded-md '>
-                    <div className='flex flex-col w-1/6 p-4 gap-10 h-screen  '>
+                <div className='w-full md:w-2/5  h-fit flex flex-col md:flex-row gap-10  rounded-md '>
+                    <div className='flex md:flex-col md:w-1/6 w-full p-4 gap-2 md:gap-10 h-full md:h-screen  '>
                         {foundObject?.image1?.map((item, i) => (
-                            <img onClick={() => setClickedImage(item)} className='md:w-full cursor-pointer w-full h-1/12 md:h-20 rounded-md object-cover   ' key={i} src={item} alt="" />
+                            <img onClick={() => setClickedImage(item)} className='md:w-full cursor-pointer w-1/5 h-20 md:h-20 rounded-md object-cover   ' key={i} src={item} alt="" />
                         ))}
                     </div>
 
-                    <div className='w-5/6 h-screen  '>
-                        <img className=' w-full h-1/12 md:h-2/3 rounded-md    ' key={clickedImage} src={clickedImage ? clickedImage : foundObject?.image1?.slice(0, 1)} alt="" />
+                    <div className='md:w-5/6 w-full md:h-screen h-full  '>
+                        <img className=' w-full h-80 md:h-2/3 rounded-md    ' key={clickedImage} src={clickedImage ? clickedImage : foundObject?.image1?.slice(0, 1)} alt="" />
                         <div className='w-full gap-2  h-20 flex   justify-between items-center '>
                             <button className={`w-2/3  bg-red-200 hover:bg-red-500 hover:text-white h-2/3 rounded-md font-bold `} onClick={handleOpen}>
                                 {'Move to Bag'}
@@ -200,11 +200,11 @@ const ProductView = () => {
 
 
 
-                <div className='w-full md:w-3/5 min-h-screen mt-10  px-20 md:p-8   flex flex-col gap-6  rounded-md shadow-md'>
-                    <p className=' text-2xl font-bold '>{foundObject?.brand}</p>
+                <div className='w-full md:w-3/5 h-full md:min-h-screen md:mt-10  md:px-20 md:p-8   flex flex-col gap-2 md:gap-6  rounded-md shadow-md'>
+                    <p className=' text-sm md:text-2xl font-bold '>{foundObject?.brand}</p>
 
-                    <p className=' text-xl '>{foundObject?.name} </p>
-                    <div className='flex w-2/5 gap-4  flex-row justify-between items-center'> <p className=' text-gray-400'>Rating</p> {[1, 2, 3, 4, 5].map((value) => (
+                    <p className=' text-xs md:text-xl '>{foundObject?.name} </p>
+                    <div className='flex w-2/5 gap-4  flex-row justify-between text-xs md:text-base items-center'> <p className=' text-gray-400'>Rating</p> {[1, 2, 3, 4, 5].map((value) => (
                         <FaStar
                             key={value}
                             color={value <= averageRatingValue ? '#ffc107' : '#e4e5e9'} // Update color based on ratingValue
@@ -212,30 +212,30 @@ const ProductView = () => {
                             style={{ height: "50px", width: "20px" }}
                         />
                     ))}</div>
-                    <div className='flex justify-start gap-10 w-80 text-2xl font-bold'> <p >{foundObject?.price - foundObject?.discount} RS </p><del> {foundObject?.discount} RS</del></div>
+                    <div className='flex justify-start gap-10 w-80 text-sm md:text-2xl font-bold'> <p >{foundObject?.price - foundObject?.discount} RS </p><del> {foundObject?.discount} RS</del></div>
                     <div>
                         <div className='flex flex-row justify-start gap-10 '>
                             <p className='w-[40px] h-[40px] flex justify-center items-center'>Color</p>
                             <div className='flex gap-4 '>
                                 <button
-                                    className={`radio-label bg-red-500 text-white w-12  h-12 rounded-full`}
+                                    className={`radio-label bg-red-500 text-white w-8 md:w-12 text-xs md:text-base h-8 md:h-12 rounded-full`}
                                 >
                                     Red
                                 </button>
                                 <button
-                                    className={`radio-label bg-white border border-gray-300 rounded-full w-12  h-12`}
+                                    className={`radio-label bg-white border border-gray-300 text-xs md:text-base rounded-full w-8 md:w-12  h-8 md:h-12`}
                                 // onClick={() => handleColorChange('white')}
                                 >
                                     White
                                 </button>
                                 <button
-                                    className={`radio-label bg-blue-500 rounded-full text-white w-12  h-12`}
+                                    className={`radio-label bg-blue-500 rounded-full text-white text-xs md:text-base w-8 md:w-12  h-8 md:h-12`}
                                 // onClick={() => handleColorChange('blue')}
                                 >
                                     Blue
                                 </button>
                                 <button
-                                    className={`radio-label bg-green-500 text-white rounded-full w-12  h-12 `}
+                                    className={`radio-label bg-green-500 text-white rounded-full text-xs md:text-base w-8 md:w-12  h-8 md:h-12 `}
                                 // onClick={() => handleColorChange('green')}
                                 >
                                     Green
@@ -244,22 +244,22 @@ const ProductView = () => {
                         </div>
 
                         <div className='flex flex-row justify-start gap-10 mt-10'>
-                            <p className='w-[40px] h-[40px] flex justify-center items-center'>SIZE</p>
+                            <p className='w-[40px] h-[40px] flex justify-center text-xs md:text-base items-center'>SIZE</p>
                             <div>
                                 <button
-                                    className={`radio-label border border-gray-300   w-10 h-10 rounded mr-4 `}
+                                    className={`radio-label border border-gray-300  w-7 md:w-10 h-7 md:h-10 rounded mr-4 `}
 
                                 >
                                     S
                                 </button>
                                 <button
-                                    className={`radio-label  border border-gray-300 w-10 h-10 rounded mr-4 `}
+                                    className={`radio-label  border border-gray-300w-7 md:w-10 h-7 md:h-10 rounded mr-4 `}
                                 // onClick={() => handleSizeChange('medium')}
                                 >
                                     M
                                 </button>
                                 <button
-                                    className={`radio-label border-gray-300   border  w-10 h-10 rounded `}
+                                    className={`radio-label border-gray-300   border w-7 md:w-10 h-7 md:h-10 rounded `}
                                 // onClick={() => handleSizeChange('large')}
                                 >
                                     L
@@ -268,12 +268,12 @@ const ProductView = () => {
                         </div>
 
                     </div>
-                    <div className='flex flex-col justify-start gap-2 w-full text-lg '> <p className='font-bold' >Available Offers </p>
+                    <div className='flex flex-col justify-start gap-2 w-full text-xs md:text-lg '> <p className='font-bold' >Available Offers </p>
                         <p> Bank Offer5% Cashback on Flipkart Axis Bank CardT&C
                             <br />
                             Partner OfferSign-up for Flipkart Pay Later & get free Times Prime Benefits worth ₹10,000*Know More</p>
                     </div>
-                    <div className='flex flex-col justify-start gap-2 w-full text-lg '> <p className='font-bold' >Available Offers </p>
+                    <div className='flex flex-col justify-start gap-2 w-full text-xs md:text-lg '> <p className='font-bold' >Available Offers </p>
                         <p>
                             Deliver to
                             Enter delivery pincode to
@@ -285,7 +285,7 @@ const ProductView = () => {
                     <div>
                         <div className='flex border justify-start gap-10 flex-col  '>
 
-                            <div className='w-full p-5 border-b-2 text-2xl font-bold flex justify-evenly'>
+                            <div className='w-full p-5 border-b-2 text-sm md:text-2xl font-bold flex justify-evenly'>
                                 <p>Ratings & Reviews </p><p>
                                     {foundRatings?.length} ratings and {foundRatings?.length} reviews</p>
                             </div>

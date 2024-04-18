@@ -161,7 +161,7 @@ exports.addAddressController = async (req, res) => {
         }
 
         const newAddressList = new addressModel({ user, state, city, street, postalCode, country, contactNumber, altContactNumber });
-        await newAddressList.save();
+        (await newAddressList.save()).populate("user");
 
         return res.status(200).json({
             success: true,

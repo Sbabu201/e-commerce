@@ -190,11 +190,11 @@ const Address = () => {
                 </Fade>
             </Modal>
             <div className='min-h-screen'>
-                <div className='pt-20 flex items-center mx-40 mt-10 font-bold text-lg'>
+                <div className='pt-20 flex items-center justify-center md:justify-start md:mx-40 mt-10 font-bold text-lg'>
                     <h1>add address :</h1>
                     <button className='w-20 h-8 hover:bg-blue-500 bg-sky-200 mx-4 rounded-md' onClick={handleOpen} >ADD</button>
                 </div>
-                <div className=' flex flex-col md:flex-row mx-20 mt-5 items-start gap-5 h-full'>
+                <div className=' flex flex-col md:flex-row md:mx-20 mt-5 items-start gap-5 h-full'>
 
                     <div className='bg-transparent  gap-4 w-full flex-col flex justify-between  md:w-2/3 h-full p-4 '>
                         {

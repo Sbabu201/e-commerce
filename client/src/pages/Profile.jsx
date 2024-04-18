@@ -39,12 +39,12 @@ const Profile = () => {
     return (
         <>
             <div className='mt-32 flex h-screen items-center flex-col  gap-20'>
-                <div className='flex justify-start mx-40 '>
-                    <h1 className=' px-20 font-bold text-lg uppercase'>Profile : hello {user?.name}</h1>
+                <div className='flex justify-start md:mx-40 '>
+                    <h1 className=' md:px-20 font-bold text-xs md:text-lg uppercase'>Profile : hello {user?.name}</h1>
                 </div>
-                <div className=' h-fit mb-10 b flex flex-col items-start justify-evenly w-2/3 border shadow-md font-medium '>
-                    <div className='flex w-full h-2/3  justify-between gap-10 p-10   items-center'>
-                        <div className='flex w-2/3  justify-evenly text-lg' >
+                <div className=' h-fit mb-10 b flex flex-col items-start justify-evenly w-full md:w-2/3 border shadow-md font-medium '>
+                    <div className='flex flex-col-reverse    md:flex-row w-full h-full md:h-2/3  justify-between gap-2 md:gap-10 pt-10 md:pt-0 md:p-10   items-center'>
+                        <div className='flex w-full md:w-2/3 text-xs  justify-evenly md:text-lg' >
                             <div className='flex flex-col gap-4 justify-evenly'>
                                 <p className='mx-4'>Email  </p>
                                 <p className='mx-4'>name  </p>
@@ -68,8 +68,8 @@ const Profile = () => {
 
 
                         </div>
-                        <div className='w-1/3 rounded-lg '>
-                            <img className=' rounded-full w-80 h-72' src={user ? user.profilePhoto : ""} alt="" />
+                        <div className='md:w-1/3 w-full  rounded-lg '>
+                            <img className=' rounded-full w-40 h-40 md:w-80 md:h-72' src={user ? user.profilePhoto : ""} alt="" />
                         </div>
 
                     </div>
