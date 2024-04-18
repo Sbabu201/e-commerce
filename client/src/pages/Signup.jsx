@@ -75,18 +75,18 @@ const Signup = () => {
     return (
         <>
 
-            <div className='flex flex-wrap justify-between items-center h-screen w-full ' style={{ backgroundImage: `url(${login})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-                <div className='m-10 flex flex-col items-center  w-4/5 md:w-1/3 h-5/6 justify-between font-bold bg-gray-200 rounded-lg ' >
+            <div className='flex flex-wrap text-xs md:text-base justify-between items-center h-screen w-full ' style={{ backgroundImage: `url(${login})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                <div className='md:m-10 flex flex-col items-center  w-full md:w-1/3 h-5/6 justify-between font-bold bg-gray-200 rounded-lg ' >
                     <form className='mt-8 flex flex-col text-c justify-center items-center  w-full  h-4/5' onSubmit={handleSubmit}>
-                        <p className='w-full px-16  '>UserName :</p>
-                        <input className='h-12 w-3/4 bg-transparent border-b-2 border-black my-4 outline-none rounded-md ' name="name" value={input.name} required onChange={handleChange} type="text" />
-                        <p className='w-full px-16  '>ProfilePic :</p>
-                        <input className='h-12 w-3/4 bg-transparent border-b-2 border-black my-4 outline-none rounded-md ' type="file" name="file" onChange={handleImage} required />
-                        <p className='w-full px-16  '>Email :</p>
-                        <input className='h-12 w-3/4 bg-transparent border-b-2 border-black my-4 outline-none rounded-md ' name="email" value={input.email} required onChange={handleChange} type="text" />
-                        <p className='w-full px-16 '>Password :</p>
-                        <input className='h-12 w-3/4 bg-transparent border-b-2 border-black my-4 outline-none rounded-md ' name="password" value={input.password} required onChange={handleChange} type="text" />
-                        <button className={`relative bg-blue-300 w-3/4 h-12 rounded-md hover:bg-blue-400 ${loading ? 'hover:cursor-not-allowed' : ''}`} type="submit">
+                        <p className='w-full md:px-16 px-4 '>UserName :</p>
+                        <input className='md:h-12 h-6 w-full md:w-3/4 bg-transparent border-b-2 border-black  my-4 outline-none rounded-md ' name="name" value={input.name} required onChange={handleChange} type="text" />
+                        <p className='w-full md:px-16 px-4  '>ProfilePic :</p>
+                        <input className='md:h-12 h-6 w-full md:w-3/4 bg-transparent border-b-2 border-black   my-4  outline-none rounded-md ' type="file" name="file" onChange={handleImage} required />
+                        <p className='w-full md:px-16 px-4  '>Email :</p>
+                        <input className='md:h-12 h-6 w-full md:w-3/4 bg-transparent border-b-2 border-black   my-4  outline-none rounded-md ' name="email" value={input.email} required onChange={handleChange} type="text" />
+                        <p className='w-full md:px-16 px-4 '>Password :</p>
+                        <input className='md:h-12 h-6 w-full md:w-3/4 bg-transparent border-b-2 border-black   my-4  outline-none rounded-md ' name="password" value={input.password} required onChange={handleChange} type="text" />
+                        <button className={`relative bg-blue-300 w-3/4 md:h-12 h-8 rounded-md hover:bg-blue-400 ${loading ? 'hover:cursor-not-allowed' : ''}`} type="submit">
                             {loading && (
                                 <div className="absolute inset-0 flex items-center justify-center">
                                     <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500"></div>
@@ -96,15 +96,15 @@ const Signup = () => {
                         </button>
                     </form>
 
-                    <div className='mt-2 flex h-2/5 w-full gap-20 text-center justify-center items-center'>
-                        <p className=' w-1/3 text-sm h-2/5 rounded-md '>already have an account ?</p>
-                        <button className='bg-blue-300 w-28 h-2/5 rounded-md hover:bg-blue-400' onClick={() => { navigate("/login") }}>Login here</button>
+                    <div className='mt-2 flex md:h-2/5 h-auto w-full gap-20 text-center justify-center items-center'>
+                        <p className='  text-xs md:text-base  '>already have an account ?</p>
+                        <button className='bg-blue-300 md:w-28 w-24 md:h-2/5 h-8 rounded-md hover:bg-blue-400' onClick={() => { navigate("/login") }}>Login here</button>
                     </div>
                     <div className='flex justify-between w-40 items-center h-1/5'>
-                        <a className='w-1/6 rounded-md ' href="https://instagram.com/_babu.55_" target='blank'><img src={insta} alt="" /></a>
-                        <a className='w-1/6 rounded-md ' href="https://github.com/Sbabu201" target='blank'><img src={git} alt="" /></a>
-                        <a className='w-1/6 rounded-md ' href="https://twitter.com/_babu55_" target='blank'>  <img src={twitter} alt="" /></a>
-                        <a className='w-1/6 rounded-md ' href="https://github.com/Sbabu201" target='blank'> <img src={facebook} alt="" /></a>
+                        <a className='w-1/6 rounded-md ' href="https://instagram.com/_babu.55_" target='blank'><img className='w-full h-6 rounded-md object-cover' src={insta} alt="" /></a>
+                        <a className='w-1/6 rounded-md ' href="https://github.com/Sbabu201" target='blank'><img className='w-full h-6 rounded-md object-cover' src={git} alt="" /></a>
+                        <a className='w-1/6 rounded-md ' href="https://twitter.com/_babu55_" target='blank'>  <img className='w-full h-6 rounded-md object-cover' src={twitter} alt="" /></a>
+                        <a className='w-1/6 rounded-md ' href="https://github.com/Sbabu201" target='blank'> <img className='w-full h-6 rounded-md object-cover' src={facebook} alt="" /></a>
                     </div>
                 </div>
             </div >

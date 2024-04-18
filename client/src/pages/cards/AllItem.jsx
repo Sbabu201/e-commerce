@@ -41,7 +41,7 @@ const AllItem = ({ item }) => {
 
     const moveToWishList = async (e) => {
         e.preventDefault();
-        const userId = localStorage.getItem("userId");
+        const userId = JSON.parse(localStorage.getItem("user"));
 
         if (!userId) {
             toast.error("you haven't logged in yet");
@@ -137,7 +137,7 @@ const AllItem = ({ item }) => {
             </Modal>
 
             <div
-                className='md:h-[350px] gap-2 h-72 w-[46%] md:w-1/5 shadow-xl flex cursor-pointer flex-col justify-between rounded-md '
+                className='md:h-[350px] gap-2 h-72 w-full text-xs md:text-base md:w-1/5 shadow-xl flex cursor-pointer flex-col justify-between rounded-md '
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
             >

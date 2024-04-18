@@ -51,7 +51,7 @@ const AllProduct = () => {
 
     return (
         <div className='mt-24  flex  '>
-            <div className='md:min-h-screen  h-fit w-1/5 flex flex-col border  border-gray-200'>
+            <div className='md:min-h-screen  h-fit w-2/5 md:w-1/5 flex text-xs md:text-base flex-col border  border-gray-200'>
                 <div className='p-4'>
                     <p className='font-semibold uppercase'>Categories</p>
                     <div className='mt-2 flex flex-col gap-2'>
@@ -182,7 +182,7 @@ const AllProduct = () => {
 
             <div className='h-full w-full'>
                 {/* Right panel for product items */}
-                <div className='w-4/5 min-h-screen flex justify-center gap-4   md:justify-evenly  md:w-full  md:p-10 flex-wrap'>
+                <div className=' min-h-screen flex flex-wrap md:gap-4  justify-center   md:justify-evenly  w-full  md:p-10 '>
                     {/* Render list items for the current page */}
                     {currentItems.map((item) => (
                         <AllItem key={item._id} item={item} />
@@ -203,153 +203,10 @@ const AllProduct = () => {
                     ))}
                 </div>
             </div>
+
         </div>
     );
 };
 
 export default AllProduct;
 
-// import React, { useState, useEffect } from 'react';
-// import { useSelector } from 'react-redux';
-// import { useParams } from 'react-router-dom';
-
-// const AllProduct = () => {
-//     const products = useSelector(state => state.productReducer.productItems);
-//     const params = useParams();
-//     const [currentPage, setCurrentPage] = useState(1);
-//     const [filters, setFilters] = useState({
-//         category: params?.category || null,
-//         brand: params?.brand || null,
-//         priceRange: { min: 0, max: 100 }, // Example price range, adjust as needed
-//         colors: [],
-//     });
-//     const itemsPerPage = 15;
-
-//     // Function to filter products based on the applied filters
-//     const filterProducts = (products, filters) => {
-//         return products.filter(product => {
-//             // Check if product matches each filter criterion
-//             return (
-//                 (!filters.category || product.category === filters.category) &&
-//                 (!filters.brand || product.brand === filters.brand) &&
-//                 (!filters.priceRange || (product.price >= filters.priceRange.min && product.price <= filters.priceRange.max)) &&
-//                 (!filters.colors.length || filters.colors.includes(product.color))
-//             );
-//         });
-//     };
-
-//     // Filter products based on the applied filters
-//     const filteredProducts = filterProducts(products, filters);
-
-//     // Pagination
-//     const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
-//     const startIndex = (currentPage - 1) * itemsPerPage;
-//     const endIndex = currentPage * itemsPerPage;
-//     const currentItems = filteredProducts.slice(startIndex, endIndex);
-
-//     // Handle page change
-//     const handlePageChange = (pageNumber) => {
-//         setCurrentPage(pageNumber);
-//     };
-
-//     // Handle filter change (e.g., category, brand, price range, color)
-//     const handleFilterChange = (filterName, value) => {
-//         setFilters({
-//             ...filters,
-//             [filterName]: value,
-//         });
-//         setCurrentPage(1); // Reset to the first page when filter changes
-//     };
-
-//     return (
-//         <div className='md:min-h-screen mt-24 h-fit w-1/5 flex flex-col border  border-gray-200'>
-//             {/* Categories */}
-//             <div className='p-4'>
-//                 <p className='font-semibold uppercase'>Categories</p>
-//                 <div className='mt-2 flex flex-col gap-2'>
-//                     <label className='inline-flex items-center'>
-//                         <input
-//                             type='checkbox'
-//                             className='form-checkbox'
-//                             onChange={() => handleFilterChange('category', 'shoe')}
-//                         />
-//                         <span className='ml-2'>Shoe</span>
-//                     </label>
-//                     {/* Repeat for other categories */}
-//                 </div>
-//             </div>
-
-//             {/* Price Range */}
-//             <div className='p-4 border-t border-gray-200'>
-//                 <h2 className='font-semibold'>Price Range</h2>
-//                 <div className='mt-2 flex flex-col'>
-//                     <input
-//                         type='range'
-//                         className='form-range'
-//                         min={0}
-//                         max={100}
-//                         value={filters.priceRange.min}
-//                         onChange={e => handleFilterChange('priceRange', { ...filters.priceRange, min: parseInt(e.target.value) })}
-//                     />
-//                     <input
-//                         type='range'
-//                         className='form-range'
-//                         min={0}
-//                         max={100}
-//                         value={filters.priceRange.max}
-//                         onChange={e => handleFilterChange('priceRange', { ...filters.priceRange, max: parseInt(e.target.value) })}
-//                     />
-//                 </div>
-//             </div>
-
-//             {/* Brand */}
-//             <div className='p-4 border-t border-gray-200'>
-//                 <h2 className='font-semibold'>Brand</h2>
-//                 <div className='mt-2'>
-//                     <label className='inline-flex items-center'>
-//                         <input
-//                             type='checkbox'
-//                             checked={params?.brand === "hrx"}
-//                             className='form-checkbox'
-//                             onChange={() => handleFilterChange('brand', 'hrx')}
-//                         />
-//                         <span className='ml-2'>hrx</span>
-//                     </label>
-//                     {/* Repeat for other brands */}
-//                 </div>
-//             </div>
-
-//             {/* Color */}
-//             <div className='p-4 border-t border-gray-200'>
-//                 <h2 className='font-semibold'>Color</h2>
-//                 <div className='mt-2'>
-//                     {/* Implement color checkboxes and attach onChange event handlers */}
-//                 </div>
-//             </div>
-
-//             {/* Render product list */}
-//             <div>
-//                 {currentItems.map(product => (
-//                     <div key={product.id}>
-//                         {/* Render product details */}
-//                     </div>
-//                 ))}
-//             </div>
-
-//             {/* Pagination controls */}
-//             <div className='flex justify-center mt-4'>
-//                 {Array.from({ length: totalPages }, (_, index) => (
-//                     <button
-//                         key={index}
-//                         onClick={() => handlePageChange(index + 1)}
-//                         className={`mx-1 px-4 py-2 border border-gray-400 rounded-md ${currentPage === index + 1 ? 'bg-gray-200' : ''}`}
-//                     >
-//                         {index + 1}
-//                     </button>
-//                 ))}
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default AllProduct;

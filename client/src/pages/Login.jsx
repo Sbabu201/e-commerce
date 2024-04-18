@@ -33,6 +33,7 @@ const Login = () => {
             console.log('data', data)
             if (data) {
                 localStorage.setItem('user', JSON.stringify(data?.data.info));
+                localStorage.setItem('userId', data?.data?.info?._id);
                 localStorage.setItem('token', data?.data.accessToken);
                 dispatch(loginAuth());
                 toast.success("login successful");
@@ -40,7 +41,7 @@ const Login = () => {
             }
         } catch (error) {
             console.log('error', error)
-            toast.error("wrong userid or password ");
+            toast.error(error?.message);
             setInput({
                 email: "",
                 password: ""
@@ -53,24 +54,24 @@ const Login = () => {
         <>
 
             <div className='flex flex-wrap justify-between items-center h-screen w-full ' style={{ backgroundImage: `url(${login})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-                <div className='m-10 flex flex-col items-center w-4/5 md:w-1/3 h-3/5 justify-between font-bold bg-gray-200 rounded-lg ' >
+                <div className='md:m-10  flex flex-col items-center w-full md:w-1/3 h-3/5 text-xs md:text-base justify-between font-bold bg-gray-200 rounded-lg ' >
                     <form className='mt-8 flex flex-col justify-center items-center  w-full  h-4/5' onSubmit={handleSubmit}>
-                        <p className='w-full px-16  '>UserName :</p>
-                        <input className='h-12 w-3/4 my-8 outline-none bg-transparent border-b-2 border-black rounded-md ' type="text" name="email" required value={input.email} onChange={handleChange} />
-                        <p className='w-full px-16 '>Password :</p>
-                        <input className='h-12 w-3/4 my-8 outline-none bg-transparent border-b-2 border-black rounded-md ' type="text" name="password" required value={input.password} onChange={handleChange} />
-                        <button className='bg-blue-300 w-3/4 h-1/6 rounded-md hover:bg-blue-400' type='submit'>login</button>
+                        <p className='w-full md:px-16 px-4 '>UserName :</p>
+                        <input className='h-12 w-full md:w-3/4 md:my-8 my-2 outline-none bg-transparent border-b-2 border-black rounded-md ' type="text" name="email" required value={input.email} onChange={handleChange} />
+                        <p className='w-full  md:px-16 px-4'>Password :</p>
+                        <input className='h-12 md:w-3/4 w-full md:my-8 my-2 outline-none bg-transparent border-b-2 border-black rounded-md ' type="text" name="password" required value={input.password} onChange={handleChange} />
+                        <button className='bg-blue-300 w-3/4 h-1/6 mt-4 md:mt-0 rounded-md hover:bg-blue-400' type='submit'>login</button>
                     </form>
 
                     <div className='mt-2 flex h-2/5 w-full gap-20  justify-center items-center'>
-                        <button className='bg-blue-300 w-40 h-2/5 rounded-md hover:bg-blue-400'>Forgot Password ?</button>
-                        <button className='bg-blue-300 w-28 h-2/5 rounded-md hover:bg-blue-400' onClick={() => { navigate("/signup") }}>Sign Up</button>
+                        <button className='bg-blue-300 w-40 md:h-[45%] h-[30%] rounded-md hover:bg-blue-400'>Forgot Password ?</button>
+                        <button className='bg-blue-300 w-28 md:h-[45%]  h-[30%] rounded-md hover:bg-blue-400' onClick={() => { navigate("/signup") }}>Sign Up</button>
                     </div>
                     <div className='flex justify-between w-40 items-center h-1/5'>
-                        <a className='w-1/6 rounded-md ' href="https://instagram.com/_babu.55_" target='blank'><img src={insta} alt="" /></a>
-                        <a className='w-1/6 rounded-md ' href="https://github.com/Sbabu201" target='blank'><img src={git} alt="" /></a>
-                        <a className='w-1/6 rounded-md ' href="https://twitter.com/_babu55_" target='blank'>  <img src={twitter} alt="" /></a>
-                        <a className='w-1/6 rounded-md ' href="https://github.com/Sbabu201" target='blank'> <img src={facebook} alt="" /></a>
+                        <a className='w-1/6 rounded-md ' href="https://instagram.com/_babu.55_" target='blank'><img className='w-full h-6 rounded-md object-cover' src={insta} alt="" /></a>
+                        <a className='w-1/6 rounded-md ' href="https://github.com/Sbabu201" target='blank'><img className='w-full h-6 rounded-md object-cover' src={git} alt="" /></a>
+                        <a className='w-1/6 rounded-md ' href="https://twitter.com/_babu55_" target='blank'>  <img className='w-full h-6 rounded-md object-cover' src={twitter} alt="" /></a>
+                        <a className='w-1/6 rounded-md ' href="https://github.com/Sbabu201" target='blank'> <img className='w-full h-6 rounded-md object-cover' src={facebook} alt="" /></a>
                     </div>
                 </div>
             </div >
