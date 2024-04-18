@@ -35,9 +35,6 @@ const Profile = () => {
     }, [user]); // Add userId to dependencies
 
 
-    if (loading) {
-        return <Loader />; // Render the loader while data is being fetched
-    }
 
     return (
         <>
