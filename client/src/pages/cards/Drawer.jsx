@@ -11,7 +11,11 @@ import pant from "../../assets/pant.avif"
 import belt from "../../assets/belt.jpg"
 import kurta from "../../assets/kurta.webp"
 import { useNavigate } from "react-router-dom"
+import { useDispatch } from 'react-redux';
+import { logoutAuth } from '../../store/reducres/authReducer';
 export default function LeftDrawer({ open, setOpen }) {
+    const user = localStorage.getItem("userId")
+    const dispatch = useDispatch()
     const mencatagory = [{ gender: "men", category: "shoe", poster: shoe }, { gender: "men", category: "shirt", poster: shirt }, { gender: "men", category: "pants", poster: pant }, { gender: "men", category: "belt", poster: belt }, { gender: "men", category: "kurta", poster: kurta }, { gender: "men", category: "t-shirt", poster: tshirt }];
     const womenCatagory = [{ gender: "women", category: "shoe", poster: shoe }, { gender: "women", category: "shirt", poster: shirt }, { gender: "women", category: "pants", poster: pant }, { gender: "women", category: "belt", poster: belt }, { gender: "women", category: "kurta", poster: kurta }, { gender: "women", category: "t-shirt", poster: tshirt }];
     const navigate = useNavigate()
@@ -42,8 +46,14 @@ export default function LeftDrawer({ open, setOpen }) {
 
                         <div className='w-full   p-4'>
                             <div className='flex h-32  flex-col justify-between'>
-                                <img onClick={() => { navigate("/profile") }} className='w-16 h-16 object-cover rounded-md' src={profile?.profilePhoto} alt="" />
-
+                                {user ? <div className='flex justify-between '>
+                                    <img onClick={() => { navigate("/profile") }} className='w-16 h-16 object-cover rounded-md' src={profile?.profilePhoto} alt="" />
+                                    <button onClick={() => {
+                                        dispatch(logoutAuth());
+                                        localStorage.clear("user");
+                                        localStorage.clear("userId");
+                                    }} className='text-black items-center flex'>logout</button>
+                                </div> : <button onClick={() => navigate("/login")}>login here....</button>}
                                 <div onClick={() => { navigate("/profile") }} className='flex h-12  items-center justify-between'>
                                     <span className=' capitalize font-bold text-sm '>{profile?.name}</span>
                                     <FaAngleRight className='font-sm text-gray-400' />
