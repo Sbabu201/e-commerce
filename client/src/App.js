@@ -34,31 +34,36 @@ function App() {
       </TogleNavbar>
       <Routes>
 
-        <Route exact path="/bag" element={
-          <FirstCheck>
+        <Route element={<FirstCheck />}>
+          <Route exact path="/bag" element={
+
             <Bag />
-          </FirstCheck>} />
-        <Route exact path="/profile" element={
-          <FirstCheck>
+          } />
+          <Route exact path="/profile" element={
+
             <Profile />
-          </FirstCheck>
-        } />
-        <Route exact path="/address" element={
-          <FirstCheck>
+
+          } />
+          <Route exact path="/address" element={
+
             <Address />
-          </FirstCheck>} />
-        <Route exact path="/payment" element={
-          <FirstCheck>
+          } />
+          <Route exact path="/payment" element={
+
             <Payment />
-          </FirstCheck>} />
-        <Route exact path="/wishlist" element={
-          <FirstCheck>
+          } />
+          <Route exact path="/wishlist" element={
+
             <Wishlist />
-          </FirstCheck>} />
-        <Route exact path="/order" element={
-          <FirstCheck>
+          } />
+          <Route exact path="/order" element={
+
             <Orders />
-          </FirstCheck>} />
+          } />
+
+        </Route>
+
+
         <Route exact path="/" element={<Home />} />
         <Route exact path="/stepper" element={<Stepper1 />} />
         <Route exact path="/loader" element={<Loader />} />

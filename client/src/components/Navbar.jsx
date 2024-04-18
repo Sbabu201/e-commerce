@@ -25,7 +25,7 @@ const Navbar = () => {
     const wishCount = useSelector(state => state.wishListReducers.wishListItems);
     const handleLogout = () => {
         dispatch(logoutAuth());
-        localStorage.clear("userId");
+        localStorage.clear("user");
     }
     const setOpen = (data) => {
         setDrawer(data)
@@ -60,7 +60,7 @@ const Navbar = () => {
             <div className=' flex justify-evenly text-xs font-bold items-center md:p-2 md:w-2/12 w-[30%]  h-20'>
                 <section className='md:flex hidden relative group  flex-col items-center cursor-pointer'>
                     <FaUser className='text-sm md:text-base' /><span className='md:flex hidden'>profile</span>
-                    <div className="absolute top-10  bg-transparent w-full md:w-80 h-80 flex md:justify-end justify-center rounded-md md:shadow-md  invisible  group-hover:visible transition duration-300">
+                    <div className="absolute top-5  bg-white w-full md:w-80 h-80 flex md:justify-end justify-center rounded-md md:shadow-md  invisible  group-hover:visible transition duration-300">
                         <div className='flex text-center flex-col justify-evenly items-start w-80 md:w-full h-full'>
                             <div className=" border-b-2 flex flex-col justify-center w-full items-center h-2/5">
                                 <p className='my-3'>{isLogin ? "hello .. account details here " : "welcome ! please login to access the account"}</p>

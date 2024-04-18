@@ -32,13 +32,14 @@ const Login = () => {
             });
             console.log('data', data)
             if (data) {
-                localStorage.setItem('userId', data?.data.info._id);
+                localStorage.setItem('user', JSON.stringify(data?.data.info));
                 localStorage.setItem('token', data?.data.accessToken);
                 dispatch(loginAuth());
                 toast.success("login successful");
                 navigate("/");
             }
         } catch (error) {
+            console.log('error', error)
             toast.error("wrong userid or password ");
             setInput({
                 email: "",

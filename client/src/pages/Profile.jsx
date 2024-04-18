@@ -22,31 +22,17 @@ const style = {
 };
 const Profile = () => {
     const navigate = useNavigate()
-    const userId = localStorage.getItem("userId");
-    const [user, setUser] = useState({});
-    const [loading, setLoading] = useState(true); // Add loading state
+    const user = JSON.parse(localStorage.getItem("user"))
+    // console.log('user', user)
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     useEffect(() => {
-        console.log('userId', userId)
-        if (!userId) {
+        // console.log('userId', user)
+        if (!user) {
             navigate("/login")
         }
-        const getData = async () => {
-            try {
-                const user = await axios.get(`${URL}/user/user/${userId}`);
-                setUser(user.data.existUser);
-                setLoading(false); // Set loading to false when data is fetched
-            } catch (error) {
-                console.log('error', error)
-
-                setLoading(false); // Set loading to false even if there's an error
-            }
-        }
-
-        getData();
-    }, [userId]); // Add userId to dependencies
+    }, [user]); // Add userId to dependencies
 
 
     if (loading) {
@@ -55,9 +41,9 @@ const Profile = () => {
 
     return (
         <>
-            <div className='mt-32 flex items-center flex-col  gap-20'>
+            <div className='mt-32 flex h-screen items-center flex-col  gap-20'>
                 <div className='flex justify-start mx-40 '>
-                    <h1 className=' px-20 font-bold text-lg uppercase'>Profile : hello {user.name}</h1>
+                    <h1 className=' px-20 font-bold text-lg uppercase'>Profile : hello {user?.name}</h1>
                 </div>
                 <div className=' h-fit mb-10 b flex flex-col items-start justify-evenly w-2/3 border shadow-md font-medium '>
                     <div className='flex w-full h-2/3  justify-between gap-10 p-10   items-center'>

@@ -15,7 +15,8 @@ export default function LeftDrawer({ open, setOpen }) {
     const mencatagory = [{ gender: "men", category: "shoe", poster: shoe }, { gender: "men", category: "shirt", poster: shirt }, { gender: "men", category: "pants", poster: pant }, { gender: "men", category: "belt", poster: belt }, { gender: "men", category: "kurta", poster: kurta }, { gender: "men", category: "t-shirt", poster: tshirt }];
     const womenCatagory = [{ gender: "women", category: "shoe", poster: shoe }, { gender: "women", category: "shirt", poster: shirt }, { gender: "women", category: "pants", poster: pant }, { gender: "women", category: "belt", poster: belt }, { gender: "women", category: "kurta", poster: kurta }, { gender: "women", category: "t-shirt", poster: tshirt }];
     const navigate = useNavigate()
-
+    const profile = JSON.parse(localStorage.getItem("user"))
+    // console.log('profile', profile?.name)
     const [contentOpen, setContentOpen] = React.useState({
         men: false,
         women: false,
@@ -41,12 +42,11 @@ export default function LeftDrawer({ open, setOpen }) {
 
                         <div className='w-full   p-4'>
                             <div className='flex h-32  flex-col justify-between'>
-                                <img className='w-16 h-16 object-cover rounded-md' src="https://imgs.search.brave.com/k0dLSCkgdBLLpAsasOi6twdh730eexldbPKhGyPk_WM/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuaW5kaWFuZXhw/cmVzcy5jb20vMjAy/NC8wMy9OZXctUHJv/amVjdC04MS5qcGc_/dz0yMTA" alt="" />
+                                <img onClick={() => { navigate("/profile") }} className='w-16 h-16 object-cover rounded-md' src={profile?.profilePhoto} alt="" />
 
-                                <div className='flex h-12  items-center justify-between'>
-                                    <span className=' capitalize font-bold text-sm '>username</span>
-                                    {!contentOpen?.men ? <FaAngleRight className='font-sm text-gray-400' /> :
-                                        <FaAngleDown className='font-sm text-gray-400' />}
+                                <div onClick={() => { navigate("/profile") }} className='flex h-12  items-center justify-between'>
+                                    <span className=' capitalize font-bold text-sm '>{profile?.name}</span>
+                                    <FaAngleRight className='font-sm text-gray-400' />
                                 </div>
                             </div>
                             <div onClick={() => { setContentOpen((state) => ({ ...state, men: !state.men })) }} className='flex h-12  items-center justify-between'>
