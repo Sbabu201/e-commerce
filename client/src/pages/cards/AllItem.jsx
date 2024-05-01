@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addWishList } from '../../store/reducres/wishListReducers';
 import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { FaHeart } from "react-icons/fa6";
 import toast from "react-hot-toast"
+import { FaStar } from 'react-icons/fa';
 const style = {
     position: 'absolute',
     top: '50%',
@@ -20,6 +21,8 @@ const style = {
 
 const AllItem = ({ item }) => {
     // console.log('item', item)
+    const allWishlist = useSelector(state => state.wishListReducers.wishListItems);
+    const foundWishList = allWishlist.find(items => items?.product?._id === item?._id);
     const [slide, setSlide] = useState(0);
     const [isHovered, setIsHovered] = useState(false); // State to track hover
     const [open, setOpen] = useState(false);
@@ -33,7 +36,6 @@ const AllItem = ({ item }) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
-    const [isWishlisted, setIsWishlisted] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const navigate = useNavigate();
@@ -58,7 +60,7 @@ const AllItem = ({ item }) => {
 
     const productHandle = () => {
         localStorage.setItem("productId", item._id);
-        navigate("/product");
+        navigate(`/product/${item?._id}`);
     };
 
     const handleMouseEnter = () => {
@@ -137,23 +139,23 @@ const AllItem = ({ item }) => {
             </Modal>
 
             <div
-                className='md:h-[350px] gap-2 h-72 w-full text-xs md:text-base md:w-1/5 shadow-xl flex cursor-pointer flex-col justify-between rounded-md '
+                className='md:h-[350px] gap-2  border border-gray-200 h-72 w-full text-xs md:text-base md:w-1/5  flex cursor-pointer flex-col justify-between rounded-md '
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
             >
                 <div className='h-full w-full flex flex-col   justify-start' >
 
-                    <div className='h-[75%]  w-full p-4 '>
+                    <div className='h-[75%]  w-full '>
                         {isHovered ? (
                             <div className='carousel min-w-full h-full   '>
                                 <p className='absolute top-0 left-0 text-black  font-bold p-2'>{item?.brand}</p>
                                 <button className='absolute top-0 right-0 text-black font-bold    p-2' onClick={handleOpen}>
                                     <span className="flex flex-col justify-end  items-end  font-bold group">
-                                        <FaHeart className=' text-xl' style={{ color: isWishlisted ? "red" : "white" }} />
-                                        <p class="opacity-0 group-hover:opacity-100 transition-opacity duration-500 font-semibold text-xs ">WishList</p>
+                                        <FaHeart className=' text-xl' style={{ color: foundWishList ? "red" : "white" }} />
+                                        <p class="opacity-0 group-hover:opacity-100 transition-opacity text-red-500 duration-500 font-semibold text-xs ">WishList</p>
                                     </span>
                                 </button>
-                                <div className='w-full h-full'>
+                                <div className='w-full h-full  '>
 
                                     {item?.image1?.map((items, idx) => (
                                         <img key={idx} onClick={productHandle} style={{ width: '100%' }} className={slide === idx ? "slide scale-effect " : "slide slide-hidden "} src={items} alt="" />
@@ -165,18 +167,26 @@ const AllItem = ({ item }) => {
                                 </div>
                             </div>
                         ) : (
-                            <div className='carousel min-w-full h-full   '>
+                            <div className='carousel min-w-full h-full     '>
                                 <button className='absolute top-0 right-0 text-white p-2' onClick={handleOpen}>
                                     <span className="flex flex-col justify-end  items-end  font-bold group">
-                                        <FaHeart className=' text-xl' style={{ color: isWishlisted ? "red" : "white" }} />
+                                        <FaHeart className=' text-xl' style={{ color: foundWishList ? "red" : "white" }} />
                                         <p class="opacity-0 group-hover:opacity-100 transition-opacity duration-500 font-semibold text-xs ">WishList</p>
                                     </span>
                                 </button>
-                                <img onClick={productHandle} className='slide scale-effect' src={item?.image1[0]} alt='' />
+                                <img onClick={productHandle} className='w-full h-full object-cover ' src={item?.image1[0]} alt='' />
+                                <div className="absolute bottom-2 left-2  px-2 py-1 rounded-md">
+                                    <span className='text-sm font-bold flex gap-2 justify-center items-center  bg-sky-100 rounded-md w-10 '>  <p>{3} </p>  <FaStar
+                                        key={3}
+                                        color={'#ffc107'} // Update color based on ratingValue
+                                        size={40}
+                                        style={{ height: "12px", width: "12px" }}
+                                    /></span>
+                                </div>
                             </div>
                         )}
                     </div>
-                    <div className='pl-5 w-full h-[15%]  flex flex-col  gap-2'>
+                    <div className='pl-5 w-full h-[15%]  flex flex-col   gap-2'>
                         <p className='text-md'>{item?.name}</p>
                         <span className='flex gap-2  items-center   '><p className='font-bold '> RS. {item?.price - item?.discount}</p> <s className=' text-xs '> {item?.price}RS </s> <p className=' text-sm text-green-400'> ( Dis - {(item?.discount * 100 / item?.price).toFixed(2)} % )</p> </span>
                     </div>

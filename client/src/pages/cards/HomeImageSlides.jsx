@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ArrowCircleLeftSharpIcon from '@mui/icons-material/ArrowCircleLeftSharp';
 import ArrowCircleRightSharpIcon from '@mui/icons-material/ArrowCircleRightSharp';
-import img1 from "../../assets/login4.jpg"
-import img2 from "../../assets/login.jpg"
-import img3 from "../../assets/logo1.png"
+import img1 from "../../assets/sliding.jpg"
+import img2 from "../../assets/sliding2.jpg"
+import img3 from "../../assets/sliding3.jpg"
 const HomeImageSlides = () => {
     const [slide, setSlide] = useState(0);
     const arr = [img1, img2, img3]
@@ -14,14 +14,14 @@ const HomeImageSlides = () => {
     const prevSlide = () => {
         setSlide(slide === 0 ? arr.length - 1 : slide - 1);
     };
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            nextSlide();
-        }, 3000);
+    // useEffect(() => {
+    //     const intervalId = setInterval(() => {
+    //         nextSlide();
+    //     }, 3000);
 
-        return () => clearInterval(intervalId);
-    },
-        [slide]);
+    //     return () => clearInterval(intervalId);
+    // },
+    //     [slide]);
     return (
         <div className="w-full md:h-full h-[45%]   ">
             <div className="carousel">

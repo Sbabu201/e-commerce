@@ -7,27 +7,32 @@ const Women = () => {
     const arr2 = womenCatagory();
 
     return (
-        <div className='bg-gray-300'>
-            <div className='pt-20 flex flex-col justify-center items-center h-screen  '>
+        <div className='bg-white'>
+            <div className='pt-28 flex flex-col justify-start md:justify-center items-center md:h-screen h-fit  '>
                 <HomeImageSlides />
             </div>
-            <div className='relative min-w-full  overflow-hidden scrollbar-hide   p-10  '>
+            <div className='relative min-w-full  overflow-hidden scrollbar-hide   md:p-10  '>
+                <h1 className='font-bold md:text-4xl '>Top Brands...</h1>
+                <div className='py-10 flex overflow-x-auto scrollbar-hide  gap-4 scroll-smooth' >
 
-                <div className='py-10 flex overflow-x-auto scrollbar-hide  scroll-smooth' >
-                    {arr1.map((item) => {
-                        return (
-                            <ItemList item={item} />
-                        )
-                    })}
-                </div>  
-                <div className='py-10 flex overflow-x-auto scrollbar-hide  scroll-smooth' >
-                    {arr2.map((item) => {
+                    {arr1.map((item, i) => {
                         return (
                             <ItemList item={item} />
                         )
                     })}
                 </div>
             </div>
+            <div className='relative min-w-full  overflow-x-auto scrollbar-hide   md:p-10  '>
+                <h1 className='font-bold md:text-4xl '>Catagories to watch....</h1>
+                <div className='py-10 flex overflow-x-auto scrollbar-hide  gap-4 scroll-smooth' >
+                    {arr2.map((item, i) => {
+                        return (
+                            <ItemList item={item} />
+                        )
+                    })}
+                </div>
+            </div>
+
 
         </div>
     )

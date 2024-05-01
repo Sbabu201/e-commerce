@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import image from "../assets/login4.jpg";
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addBagItem } from '../store/reducres/bagreducer';
 import { addWishList } from '../store/reducres/wishListReducers';
@@ -23,12 +23,11 @@ const style = {
     p: 4,
 };
 const ProductView = () => {
-    const productId = localStorage.getItem("productId");
+    const productId = useParams().id;
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false); // Add loading state
     const ratings = useSelector(state => state.ratingReducer.ratingItems);
     const foundRatings = ratings.filter(item => item?.product === productId);
-    console.log('foundRatings', foundRatings)
     const averageRatingValue = foundRatings.length > 0 ? Math.floor(foundRatings.reduce((total, rating) => total + rating.ratingValue, 0)) / foundRatings.length : 0;
     const [open, setOpen] = useState(false);
     const [formData, setFormData] = useState({

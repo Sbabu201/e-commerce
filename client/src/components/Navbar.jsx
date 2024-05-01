@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import SearchIcon from '@mui/icons-material/Search';
 import { FaUser } from "react-icons/fa";
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
@@ -19,6 +19,8 @@ import Drawer from '../pages/cards/Drawer';
 import LeftDrawer from '../pages/cards/Drawer';
 const Navbar = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate()
+    const [search, setSearch] = useState("")
     const [drawer, setDrawer] = useState(false)
     const isLogin = useSelector(state => state.authReducer.isLogin);
     const bagCount = useSelector(state => state.bagreducer.bagItems);
@@ -35,6 +37,15 @@ const Navbar = () => {
         dispatch(getAllBagItems());
         dispatch(getAllProductItems())
     }, [dispatch])
+    const handleSubmit = (e) => {
+
+        e.preventDefault();
+        const queryParams = new URLSearchParams();
+        console.log(search.trim())
+        search && queryParams.append('value', search.trim());
+        setSearch("")
+        navigate(`/allproducts?${queryParams.toString()}`)
+    }
     return (
         <div className='flex  fixed top-0 z-10 justify-between items-center text-black bg-white shadow-md w-full h-16 md:h-20 '>
             <NavLink to="/" className='w-[8%] hidden  h-20 md:flex '>
@@ -52,9 +63,9 @@ const Navbar = () => {
 
 
             <div className=' flex items-center md:w-4/12 w-[55%]  h-20'>
-                <form className='md:mx-10  bg-gray-300 rounded-md flex space-between text-center items-center overflow-hidden  h-1/2 w-full' action="post">
+                <form onSubmit={handleSubmit} className='md:mx-10  bg-gray-300 rounded-md flex space-between text-center items-center overflow-hidden  h-1/2 w-full' action="post">
                     <SearchIcon className='mx-2' />
-                    <input className='w-full h-full flex p-4 rounded-md  outline-none bg-gray-300 ' type="text" name="search" placeholder='search here' />
+                    <input value={search} onChange={(e) => { setSearch(e.target.value) }} className='w-full h-full flex p-4 rounded-md  outline-none bg-gray-300 ' type="text" name="search" placeholder='search here' />
                 </form>
             </div>
             <div className=' flex justify-evenly text-xs font-bold items-center md:p-2 md:w-2/12 w-[30%]  h-20'>

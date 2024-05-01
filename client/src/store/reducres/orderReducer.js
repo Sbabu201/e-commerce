@@ -9,6 +9,7 @@ export const getAllOrders = createAsyncThunk(
     async (_, { rejectWithValue }) => {
         try {
             const userId = localStorage.getItem("userId")
+            console.log('userId', userId)
             const response = await axios.get(`${URL}/order/orderId/${userId}`);
             // console.log('response', response)
             return response.data;
@@ -47,7 +48,7 @@ const orderSlice = createSlice({
             })
             .addCase(getAllOrders.fulfilled, (state, action) => {
                 state.status = 'succeeded';
-                // console.log('action.payload', action.payload)
+                console.log('action.payload', action.payload)
                 action.payload.existOrder ? state.orders = action.payload.existOrder : state.orders = [];
             })
             .addCase(getAllOrders.rejected, (state, action) => {
@@ -59,7 +60,7 @@ const orderSlice = createSlice({
             })
             .addCase(addOrder.fulfilled, (state, action) => {
                 state.status = 'succeeded';
-                // console.log('action.payload', action.payload)
+                // console.log('action.payload orders add', action.payload)
                 if (action.payload.success) {
                     state.orders.push(action.payload.order);
                     // toast.success(action.payload.message)

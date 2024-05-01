@@ -30,7 +30,7 @@ export const OrderDetails = ({ pageReload }) => {
     // console.log('discount', discount)
     const navigate = useNavigate();
     return (
-        <div className='bg-transparent text-xs md:text-base shadow-lg w-full rounded-sm md:w-1/3 h-[300px] md:h-[400px] flex flex-col justify-between'>
+        <div className='bg-transparent text-xs md:text-base shadow-lg w-full rounded-sm md:w-full h-[300px] md:h-[400px] flex flex-col justify-between'>
             <p className='w-full bg-gray-300  my-5 px-5 h-10 flex items-center font-bold'>Price Summary</p>
             <div className='w-full   px-5 h-3/5 flex  justify-evenly  font-semibold  '>
 

@@ -10,25 +10,22 @@ const ItemList = ({ item }) => {
         console.log('items', items)
         let url = `/allproducts`;
 
-        if (gender) {
-            url += `/${gender}`;
-        }
-        if (category) {
-            url += `/${category}`;
-        }
-        if (brand) {
-            url += `/${brand}`;
-        }
-        navigate(url);
+
+        const queryParams = new URLSearchParams();
+        brand && queryParams.append('type', brand);
+        gender && queryParams.append('gender', gender);
+        category && queryParams.append('category', category);
+
+        navigate(`${url}?${queryParams.toString()}`);
     }
     return (
-        <div onClick={handleSection} className='  bg-sky-50 flex flex-row mx-10 min-w-[300px] w-[400px] transition-transform transform hover:scale-105 h-full object-cover cursor-pointer'>
-            <div className='flex flex-col justify-between  w-full h-[400px]  shadow-md rounded-lg '>
+        <div onClick={handleSection} className='  bg-sky-50 flex flex-row   min-w-[200px] md:min-w-[200px] w-[250px] md:w-[300px] transition-transform transform hover:scale-105 h-full object-cover cursor-pointer'>
+            <div className='flex flex-col justify-between  w-full h-[250px] ]  shadow-md rounded-lg '>
                 <div className='w-full h-2/3 justify-center flex '>
-                    <img src={items ? items.poster : ""} alt="image" className=' w-[80%] aspect-video rounded-lg object-cover' />
+                    <img src={items ? items.poster : ""} alt="image" className=' w-44 rounded-full aspect-video h-44 object-cover' />
                 </div>
                 <div className='h-1/3 items-center flex justify-center'>
-                    <h1 className='font-bold text-4xl uppercase'> {items?.category ? items?.category : items?.brand}</h1>
+                    <h1 className='font-bold md:text-2xl uppercase'> {items?.category ? items?.category : items?.brand}</h1>
                 </div>
             </div>
         </div>
